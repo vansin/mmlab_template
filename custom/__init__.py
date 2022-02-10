@@ -1,0 +1,1 @@
+import mmdet_custom.datasets

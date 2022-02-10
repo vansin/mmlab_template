@@ -16,3 +16,9 @@ pip install -v -e .
 
 ```
 
+
+## select gpu to run
+
+```shell
+CUDA_VISIBLE_DEVICES=1 python tools/test_batch.py
+```

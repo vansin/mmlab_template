@@ -29,13 +29,13 @@
 #         loss=dict(type='CrossEntropyLoss', loss_weight=1.0),
 #     ))
 
-
+custom_imports = dict(imports='mmcls.models', allow_failed_imports=False)
 model = dict(
     type='MaskRCNN',
     backbone=dict(
         type='mmcls.ConvNeXt',
         arch='small',
-        out_indices=(3, ),
+        out_indices=[0, 1, 2, 3],
         drop_path_rate=0.4,
         gap_before_final_norm=True,
         init_cfg=[

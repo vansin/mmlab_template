@@ -85,8 +85,8 @@ test_pipeline = [
         ])
 ]
 
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'TableDataset'
+# data_root = 'data/coco/'
 
 # Use RepeatDataset to speed up training
 data = dict(
@@ -98,8 +98,8 @@ data = dict(
         times=5,
         dataset=dict(
             type=dataset_type,
-            ann_file=data_root + 'annotations/instances_train2017.json',
-            img_prefix=data_root + 'train2017/',
+            ann_file='data/icdar2019/modern_train.json',
+            img_prefix='data/icdar2019/training/TRACKA/ground_truth',
             pipeline=train_pipeline)),
     val=dict(pipeline=test_pipeline),
     test=dict(pipeline=test_pipeline))

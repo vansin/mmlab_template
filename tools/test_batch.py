@@ -121,8 +121,6 @@ def main(config, checkpoint, out, eval_json):
     checkpoint_path = checkpoint
     args = parse_args(config, checkpoint, out)
 
-
-
     assert args.out or args.eval or args.format_only or args.show \
         or args.show_dir, \
         ('Please specify at least one operation (save/eval/format/show the '
@@ -268,24 +266,18 @@ if __name__ == '__main__':
         # print("dirs", dirs)  # 当前路径下所有子目录
         print("files", files)  # 当前路径下所有非目录子文件
 
-        if files.__len__()>0:
+        if files.__len__() > 0:
 
-            algorithm_list.append([root, files])
-    
-
+            algorithm_list.append([root, files])  
     for i, element in enumerate(algorithm_list):
-
-
         root, work_dir_files = element
-
-
         pth_files = []
         config_file = None
         for file_name in work_dir_files:
             if file_name.endswith('.pth'):
                 pth_files.append(root + '/' + file_name)
             if file_name.endswith('.py'):
-                config_file = root +  '/' + file_name
+                config_file = root + '/' + file_name
 
         for j, pth_file in enumerate(pth_files):
             print('===========', i, algorithm_list.__len__(),

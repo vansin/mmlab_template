@@ -16,8 +16,8 @@ from mmdet.apis import init_random_seed, set_random_seed, train_detector
 from mmdet.datasets import build_dataset
 from mmdet.models import build_detector
 from mmdet.utils import collect_env, get_root_logger
-
 import custom
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')

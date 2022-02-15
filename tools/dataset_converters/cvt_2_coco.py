@@ -1,6 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import argparse
 import os
+from tkinter import N
 # import os.path as osp
 import xml.etree.ElementTree as ET
 
@@ -8,12 +9,69 @@ import cv2 as cv
 import mmcv
 import numpy as np
 
-from mmdet.core import table_classes
+def fire_classes():
+    return ['fire', 'smoke', 'big_fire']
 
-label_ids = {name: i for i, name in enumerate(table_classes())}
+label_ids = {name: i for i, name in enumerate(fire_classes())}
 
 
 def parse_xml(args):
+    xml_path, img_path, valid_img_path = args
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+    size = root.find('size')
+    w = int(size.find('width').text)
+    h = int(size.find('height').text)
+    bboxes = []
+    labels = []
+    bboxes_ignore = []
+    labels_ignore = []
+    for obj in root.findall('object'):
+        name = obj.find('name').text
+        label = label_ids[name]
+        # difficult = float(obj.find('difficult').text)
+        difficult = None
+        bnd_box = obj.find('bndbox')
+        bbox = [
+            float(bnd_box.find('xmin').text),
+            float(bnd_box.find('ymin').text),
+            float(bnd_box.find('xmax').text),
+            float(bnd_box.find('ymax').text)
+        ]
+        if difficult:
+            bboxes_ignore.append(bbox)
+            labels_ignore.append(label)
+        else:
+            bboxes.append(bbox)
+            labels.append(label)
+    if not bboxes:
+        bboxes = np.zeros((0, 4))
+        labels = np.zeros((0, ))
+    else:
+        bboxes = np.array(bboxes, ndmin=2) - 1
+        labels = np.array(labels)
+    if not bboxes_ignore:
+        bboxes_ignore = np.zeros((0, 4))
+        labels_ignore = np.zeros((0, ))
+    else:
+        bboxes_ignore = np.array(bboxes_ignore, ndmin=2) - 1
+        labels_ignore = np.array(labels_ignore)
+    annotation = {
+        'filename': img_path,
+        'width': w,
+        'height': h,
+        'ann': {
+            'bboxes': bboxes.astype(np.float32),
+            'labels': labels.astype(np.int64),
+            'bboxes_ignore': bboxes_ignore.astype(np.float32),
+            'labels_ignore': labels_ignore.astype(np.int64)
+        }
+    }
+    return annotation
+
+
+
+def parse_xml_1(args):
     xml_path, img_path, valid_img_path = args
     tree = ET.parse(xml_path)
     root = tree.getroot()
@@ -207,14 +265,14 @@ def cvt_to_coco_json(annotations):
         coco['annotations'].append(annotation_item)
         return annotation_id + 1
 
-    # for category_id, name in enumerate(table_classes()):
-    #     category_item = dict()
-    #     category_item['supercategory'] = str('none')
-    #     category_item['id'] = int(category_id)
-    #     category_item['name'] = str(name)
-    #     coco['categories'].append(category_item)
+    for category_id, name in enumerate(fire_classes()):
+        category_item = dict()
+        category_item['supercategory'] = str('none')
+        category_item['id'] = int(category_id)
+        category_item['name'] = str(name)
+        coco['categories'].append(category_item)
 
-    coco['categories'] = [{'id': 1, 'supercategory': 'table', 'name': 'table'}]
+    # coco['categories'] = [{'id': 1, 'supercategory': 'table', 'name': 'table'}]
 
     for ann_dict in annotations:
         file_name = ann_dict['filename']
@@ -265,23 +323,25 @@ def parse_args():
 
 def main():
 
-    prefix = '/home/tml/vansin/paper/ICDAR2019_cTDaR'
-    xml_path = prefix + '/training/TRACKA/ground_truth'
+    prefix = 'data/599'
+    xml_path = prefix
 
-    json_out_path = prefix + '/train.json'
+    json_out_path = 'data/train.json'
     cvt_annotations(
         xml_path,
         json_out_path,
-        out_valid_img_dir='/home/tml/datasets/valid_icdar2019')
+        out_valid_img_dir='data/valid')
 
-    prefix = '/home/tml/vansin/paper/ICDAR2019_cTDaR'
-    xml_path = prefix + '/test/TRACKA'
-    json_out_path = prefix + '/test.json'
-    cvt_annotations(
-        xml_path,
-        json_out_path,
-        out_valid_img_dir='/home/tml/datasets/valid_icdar2019_test')
+    # prefix = '/home/tml/vansin/paper/ICDAR2019_cTDaR'
+    # xml_path = prefix + '/test/TRACKA'
+    # json_out_path = prefix + '/test.json'
+    # cvt_annotations(
+    #     xml_path,
+    #     json_out_path,
+    #     out_valid_img_dir='/home/tml/datasets/valid_icdar2019_test')
 
 
 if __name__ == '__main__':
     main()
+
+

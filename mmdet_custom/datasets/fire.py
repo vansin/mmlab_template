@@ -14,15 +14,15 @@ from mmcv.utils import print_log
 from terminaltables import AsciiTable
 
 from mmdet.core import eval_recalls
-from .api_wrappers import COCO, COCOeval
-from .builder import DATASETS
-from .custom import CustomDataset
+from mmdet.datasets.api_wrappers import COCO, COCOeval
+from mmdet.datasets.builder import DATASETS
+from mmdet.datasets.custom import CustomDataset
 
 
 @DATASETS.register_module()
 class FireDataset(CustomDataset):
 
-    CLASSES = ('fire',)
+    CLASSES = ('fire', 'smoke', 'big_fire')
 
     PALETTE = [(220, 20, 60), (119, 11, 32), (0, 0, 142), (0, 0, 230),
                (106, 0, 228), (0, 60, 100), (0, 80, 100), (0, 0, 70),

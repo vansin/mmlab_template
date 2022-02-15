@@ -1,2 +1,3 @@
 from .tabnet import TableDataset
-__all__ = ['TableDataset']
+from .fire import FireDataset
+__all__ = ['TableDataset', FireDataset]

@@ -23,6 +23,15 @@ conda create -n mmlab python=3.9 -y
 conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 ```
 
+cpu 版本
+
+```shell
+conda create -n mmlab_cpu python=3.9 -y
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+pip install mmcv-full=={mmcv_version} -f https://download.openmmlab.com/mmcv/dist/cpu/torch1.10.0/index.html
+
+```
+
 ### install mmcv-full
 
 ```shell

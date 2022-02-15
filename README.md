@@ -16,6 +16,23 @@ pip install -v -e .
 
 ```
 
+### install latest pytorch
+
+```shell
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+```
+
+
+### install mmcv-full
+
+```shell
+pip install mmcv-full=={mmcv_version} -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10.0/index.html
+
+
+pip install mmcv-full==1.4.4 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10.0/index.html
+
+```
+
 
 ## select gpu to run
 

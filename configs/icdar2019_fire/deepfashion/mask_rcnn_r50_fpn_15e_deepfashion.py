@@ -5,6 +5,6 @@ _base_ = [
 ]
 model = dict(
     roi_head=dict(
-        bbox_head=dict(num_classes=15), mask_head=dict(num_classes=15)))
+        bbox_head=dict(num_classes=35), mask_head=dict(num_classes=35)))
 # runtime settings
 runner = dict(type='EpochBasedRunner', max_epochs=15)

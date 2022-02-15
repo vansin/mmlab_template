@@ -23,7 +23,7 @@
 #         num_outs=5),
 #     bbox_head=dict(
 #         type='TOODHead',
-#         num_classes=1,
+#         num_classes=3,
 #         in_channels=256,
 #         stacked_convs=6,
 #         feat_channels=256,
@@ -217,7 +217,7 @@ model = dict(
         num_outs=5),
     bbox_head=dict(
         type='TOODHead',
-        num_classes=1,
+        num_classes=3,
         in_channels=256,
         stacked_convs=6,
         feat_channels=256,

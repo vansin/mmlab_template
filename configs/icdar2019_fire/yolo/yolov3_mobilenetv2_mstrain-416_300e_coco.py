@@ -132,6 +132,6 @@ lr_config = dict(
     warmup_ratio=0.0001,
     step=[24, 28])
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=1)
+runner = dict(type='EpochBasedRunner', max_epochs=30)
 evaluation = dict(interval=1, metric=['bbox'])
 find_unused_parameters = True

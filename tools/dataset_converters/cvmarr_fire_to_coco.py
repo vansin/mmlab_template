@@ -180,8 +180,16 @@ def cvt_annotations(xml_dir, out_ann_file, out_valid_img_dir):
     img_paths = []
     valid_img_paths = []
 
+
+    cout_nums = 0 
+
     for item in xmls:
         if '.xml' in item:
+
+            cout_nums+=1
+
+            if cout_nums>50:
+                break
 
             valid_img_paths.append(out_valid_img_dir + '/' +
                                    item.replace('.xml', '.jpg'))

@@ -39,6 +39,11 @@ pip install mmcv-full=={mmcv_version} -f https://download.openmmlab.com/mmcv/dis
 pip install mmcv-full==1.4.4 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10.0/index.html
 ```
 
+### install mmdetection
+
+```shell
+pip install -r requirements/build.txt
+```
 
 ## select gpu to run
 

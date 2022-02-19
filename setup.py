@@ -186,7 +186,7 @@ def add_mim_extension():
 if __name__ == '__main__':
     # add_mim_extension()
     setup(
-        name='tabledet',
+        name='cvmart',
         version=get_version(),
         description='OpenMMLab Detection Toolbox and Benchmark',
         long_description=readme(),

@@ -47,5 +47,5 @@ data = dict(
         img_prefix=data_root,
         pipeline=test_pipeline))
 
-evaluation = dict(metric=['bbox', 'segm'], intervals=10)
+evaluation = dict(metric=['bbox', 'segm'], interval=10)
 # evaluation = dict(metric='mAP', interval=200)

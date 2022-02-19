@@ -46,5 +46,6 @@ data = dict(
         ann_file='/tmp/train.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
-# evaluation = dict(metric=['bbox', 'segm'])
-evaluation = dict(metric='mAP', interval=200)
+
+evaluation = dict(metric=['bbox', 'segm'], intervals=10)
+# evaluation = dict(metric='mAP', interval=200)

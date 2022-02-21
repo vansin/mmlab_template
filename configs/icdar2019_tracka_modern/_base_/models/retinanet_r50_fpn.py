@@ -38,7 +38,7 @@ model = dict(
             type='FocalLoss',
             use_sigmoid=True,
             gamma=2.0,
-            alpha=0.25,
+            alpha=0.05,
             loss_weight=1.0),
         loss_bbox=dict(type='L1Loss', loss_weight=1.0)),
     # model training and testing settings

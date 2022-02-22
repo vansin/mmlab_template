@@ -1,5 +1,5 @@
 from mmdet.apis import init_detector, inference_detector
-
+import json
 config_file = 'work_dirs/icdar2019_fire/detectors/cascade_rcnn_r50_rfp_1x_coco/cascade_rcnn_r50_rfp_1x_coco.py'
 checkpoint_file = 'work_dirs/icdar2019_fire/detectors/cascade_rcnn_r50_rfp_1x_coco/epoch_12.pth'
 
@@ -12,12 +12,12 @@ objects = []
 fires = result[0]
 for fire in fires:
     obj = dict(
-        xmin=fire[0],
-        ymin=fire[1],
-        xmax=fire[2],
-        ymax=fire[3],
-        confidence=fire[4],
-        name = "fire"
+        xmin=fire[0].item(),
+        ymin=fire[1].item(),
+        xmax=fire[2].item(),
+        ymax=fire[3].item(),
+        confidence=fire[4].item(),
+        name="fire"
     )
 
     if obj['confidence']>0.5:
@@ -35,5 +35,7 @@ if objects.__len__()>0:
     r_json['algorithm_data']['target_count'] = objects.__len__()
 
 
-print(r_json)
+a = json.dumps(r_json, indent=4)
+
+print(a)
 

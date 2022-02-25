@@ -4,3 +4,6 @@
 [submodule "mmclassification"]
 	path = mmclassification
 	url = https://github.com/open-mmlab/mmclassification.git
+[submodule "mmdeploy"]
+	path = mmdeploy
+	url = https://github.com/open-mmlab/mmdeploy.git

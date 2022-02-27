@@ -18,3 +18,4 @@ fi
 
 ln -s /tmp/vansin/datasets $(pwd)/data
 ln -s /tmp/vansin/work_dirs $(pwd)/work_dirs
+sudo ln -s /tmp/vansin/cvmart_data /home/data

@@ -109,8 +109,8 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=24,
-    workers_per_gpu=4,
+    samples_per_gpu=48,
+    workers_per_gpu=8,
     train=dict(
         _delete_=True,
         type='RepeatDataset',  # use RepeatDataset to speed up training
@@ -137,7 +137,7 @@ lr_config = dict(
 runner = dict(type='EpochBasedRunner', max_epochs=120)
 
 # Avoid evaluation and saving weights too frequently
-evaluation = dict(interval=5, metric='bbox')
+evaluation = dict(interval=5, metric='mAP')
 checkpoint_config = dict(interval=5)
 custom_hooks = [
     dict(type='NumClassCheckHook'),

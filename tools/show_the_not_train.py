@@ -296,9 +296,14 @@ if __name__ == '__main__':
         if files.__len__() > 0:
             epoch = 0
             eval_epoch = 0
+            pkl_epoch = 0
+
             for file in files:
                 if '.pth' in file:
                     epoch +=1
+                if '.pkl' in file:
+                    pkl_epoch += 1
+
                 if '_eval.json' in file:
                     eval_epoch += 1
 
@@ -309,6 +314,7 @@ if __name__ == '__main__':
             infos = config_name.split('/')
             algorithm_list_stats_dict[config_name]['epoch'] = epoch
             algorithm_list_stats_dict[config_name]['eval_epoch'] = eval_epoch
+            algorithm_list_stats_dict[config_name]['pkl_epoch'] = pkl_epoch
 
 
 

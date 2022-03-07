@@ -50,3 +50,6 @@ pip install -r requirements/build.txt
 ```shell
 CUDA_VISIBLE_DEVICES=1 python tools/test_batch.py
 ```
+
+
+## test

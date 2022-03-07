@@ -58,6 +58,13 @@ def parse_args(config, checkpoint, out):
         type=float,
         default=0.3,
         help='score threshold (default: 0.3)')
+
+    parser.add_argument(
+        '--eval_json',
+        type=float,
+        default=False,
+        help='score threshold (default: 0.3)')
+
     parser.add_argument(
         '--gpu-collect',
         action='store_true',
@@ -227,11 +234,14 @@ def main(config, checkpoint, out, eval_json):
     else:
         outputs = mmcv.load(args.out)
 
+    if args.out and not is_out_exist:
+        print(f'\nwriting results to {args.out}')
+        mmcv.dump(outputs, args.out)
+    if args.eval_json == False:
+        return
+
     rank, _ = get_dist_info()
     if rank == 0 and not is_eval_json_exist:
-        if args.out and not is_out_exist:
-            print(f'\nwriting results to {args.out}')
-            mmcv.dump(outputs, args.out)
 
         kwargs = {} if args.eval_options is None else args.eval_options
         if args.format_only:

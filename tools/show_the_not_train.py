@@ -286,6 +286,7 @@ if __name__ == '__main__':
                         algorithm=algorithm,
                         epoch=0,
                         eval_epoch=0,
+                        pkl_epoch=0,
                         cmd=config_name +' --auto-resume'
                         )
 
@@ -301,6 +302,7 @@ if __name__ == '__main__':
             for file in files:
                 if '.pth' in file:
                     epoch +=1
+
                 if '.pkl' in file:
                     pkl_epoch += 1
 
@@ -327,7 +329,7 @@ if __name__ == '__main__':
 df = pd.DataFrame.from_dict(algorithm_list_stats)
 
 
-df.to_csv('/home/tml/Nutstore Files/ubuntu/paper/data/trained_origin.csv')
-df.to_excel('/home/tml/Nutstore Files/ubuntu/paper/data/trained_origin.xlsx')
+df.to_csv('/project/nutstore/ubuntu/paper/data/trained_origin.csv')
+df.to_excel('/project/nutstore/ubuntu/paper/data/trained_origin.xlsx')
 
 print('================================ out ==========')

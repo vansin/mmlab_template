@@ -21,18 +21,22 @@ from mmdet.models import build_detector
 import custom
 
 
-def parse_args(config, checkpoint, out):
+def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet test (and eval) a model')
-    parser.add_argument('--config', default=config,
-                        help='test config file path')
-    parser.add_argument('--checkpoint', default=checkpoint,
-                        help='checkpoint file')
+    # parser.add_argument('--config', default=config,
+    #                     help='test config file path')
+    # parser.add_argument('--checkpoint', default=checkpoint,
+    #                     help='checkpoint file')
     parser.add_argument(
         '--work-dir',
         help='the directory to save the file containing evaluation metrics')
-    parser.add_argument('--out', default=out,
-                        help='output result file in pickle format')
+    parser.add_argument(
+        '--work_dirs',
+        default='work_dirs',
+        help='special the directories to eval')
+    # parser.add_argument('--out', default=out,
+    #                     help='output result file in pickle format')
     parser.add_argument(
         '--fuse-conv-bn',
         action='store_true',
@@ -117,7 +121,7 @@ def parse_args(config, checkpoint, out):
     return args
 
 
-def main(config, checkpoint, out, eval_json):
+def main(args_config, args_checkpoint, args_out, eval_json, args):
 
     is_out_exist = osp.exists(out)
     is_eval_json_exist = osp.exists(eval_json)
@@ -126,10 +130,9 @@ def main(config, checkpoint, out, eval_json):
     # if is_eval_json_exist:
     #     return
 
-    checkpoint_path = checkpoint
-    args = parse_args(config, checkpoint, out)
+    checkpoint_path = args_checkpoint
 
-    assert args.out or args.eval or args.format_only or args.show \
+    assert args_out or args.eval or args.format_only or args.show \
         or args.show_dir, \
         ('Please specify at least one operation (save/eval/format/show the '
          'results / save the results) with the argument "--out", "--eval"'
@@ -138,10 +141,10 @@ def main(config, checkpoint, out, eval_json):
     if args.eval and args.format_only:
         raise ValueError('--eval and --format_only cannot be both specified')
 
-    if args.out is not None and not args.out.endswith(('.pkl', '.pickle')):
+    if args_out is not None and not args_out.endswith(('.pkl', '.pickle')):
         raise ValueError('The output file must be a pkl file.')
 
-    cfg = Config.fromfile(args.config)
+    cfg = Config.fromfile(args_config)
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
     # import modules from string list.
@@ -213,7 +216,7 @@ def main(config, checkpoint, out, eval_json):
         if fp16_cfg is not None:
             wrap_fp16_model(model)
         checkpoint = load_checkpoint(
-            model, args.checkpoint, map_location='cpu')
+            model, args_checkpoint, map_location='cpu')
         if args.fuse_conv_bn:
             model = fuse_conv_bn(model)
         # old versions did not save class info in checkpoints, this walkaround is
@@ -233,11 +236,11 @@ def main(config, checkpoint, out, eval_json):
                 broadcast_buffers=False)
             outputs = multi_gpu_test(model, data_loader, args.tmpdir, args.gpu_collect)
     else:
-        outputs = mmcv.load(args.out)
+        outputs = mmcv.load(args_out)
 
-    if args.out and not is_out_exist:
-        print(f'\nwriting results to {args.out}')
-        mmcv.dump(outputs, args.out)
+    if args_out and not is_out_exist:
+        print(f'\nwriting results to {args_out}')
+        mmcv.dump(outputs, args_out)
     if args.eval_json == False:
         return
 
@@ -259,7 +262,7 @@ def main(config, checkpoint, out, eval_json):
             metric = dataset.evaluate(outputs, **eval_kwargs)
             # print(metric)
             print(checkpoint_path)
-            metric_dict = dict(config=args.config, metric=metric, checkpoint_size=osp.getsize(
+            metric_dict = dict(config=args_config, metric=metric, checkpoint_size=osp.getsize(
                 checkpoint_path) / 1024 / 1024)
             # if args.work_dir is not None and rank == 0:
             #     mmcv.dump(metric_dict, eval_json)
@@ -268,11 +271,13 @@ def main(config, checkpoint, out, eval_json):
 
 if __name__ == '__main__':
 
-    work_dirs = os.listdir('work_dirs')
+
+    args = parse_args()
+
+
 
     algorithm_list = []
-
-    for root, dirs, files in os.walk('work_dirs'):
+    for root, dirs, files in os.walk(args.work_dirs):
         print("root", root)  # 当前目录路径
         # print("dirs", dirs)  # 当前路径下所有子目录
         print("files", files)  # 当前路径下所有非目录子文件
@@ -301,7 +306,7 @@ if __name__ == '__main__':
             eval_json = pth_file.replace('.pth', '_eval.json')
             # main(config_file, pth_file, out, eval_json)
 
-            main(config_file, pth_file, out, eval_json)
+            main(config_file, pth_file, out, eval_json, args)
 
             # try:
             #     main(config_file, pth_file, out, eval_json)

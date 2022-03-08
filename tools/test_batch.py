@@ -67,7 +67,7 @@ def parse_args():
     parser.add_argument(
         '--eval_json',
         type=boolean,
-        default=False,
+        default=True,
         help='score threshold (default: 0.3)')
 
     parser.add_argument(

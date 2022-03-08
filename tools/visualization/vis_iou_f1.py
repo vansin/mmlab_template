@@ -196,7 +196,7 @@ df = pd.DataFrame.from_dict(intput_data)
 # df.to_csv('/home/tml/Nutstore Files/ubuntu/paper/data/csv/'+out_file_name+'.csv')
 # df.to_excel('/home/tml/Nutstore Files/ubuntu/paper/data/csv/' +
 #             out_file_name + '.xlsx')
-df.to_csv('/project/tml/nutstore/ubuntu/paper/data/csv/' +
+df.to_csv('/project/nutstore/ubuntu/paper/data/csv/' +
             'latest' + '.csv')
 df.to_excel('/project/nutstore/ubuntu/paper/data/csv/' +
             'latest' + '.xlsx')

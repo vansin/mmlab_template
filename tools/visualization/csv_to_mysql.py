@@ -10,11 +10,8 @@ import pandas as pd
 import getpass
 user_name = getpass.getuser()
 
-train_df = pd.read_csv('/home/' + user_name +
-                       '/Nutstore Files/ubuntu/paper/data/trained_origin.csv')
-eval_df = pd.read_csv('/home/' + user_name +
-                      '/Nutstore Files/ubuntu/paper/data/csv/latest.csv')
-
+train_df = '/project/nutstore/ubuntu/paper/data/trained_origin.csv'
+eval_df = '/nutstore/ubuntu/paper/data/csv/latest.csv'
 
 train_data_list = train_df.to_dict('records')
 

@@ -8,9 +8,9 @@ import seaborn as sns
 import time
 import numpy as np
 
-tmp_pkl_name = '/home/tml/Nutstore Files/ubuntu/paper/data/csv/tmp.pkl'
+tmp_pkl_name = '/project/nutstore/ubuntu/paper/data/csv/tmp.pkl'
 
-prefix = '/home/tml/Nutstore Files/ubuntu/paper/data/iou'
+prefix = '/project/nutstore/ubuntu/paper/data/iou'
 
 
 if __name__ == '__main__':
@@ -196,9 +196,9 @@ df = pd.DataFrame.from_dict(intput_data)
 # df.to_csv('/home/tml/Nutstore Files/ubuntu/paper/data/csv/'+out_file_name+'.csv')
 # df.to_excel('/home/tml/Nutstore Files/ubuntu/paper/data/csv/' +
 #             out_file_name + '.xlsx')
-df.to_csv('/home/tml/Nutstore Files/ubuntu/paper/data/csv/' +
+df.to_csv('/project/tml/nutstore/ubuntu/paper/data/csv/' +
             'latest' + '.csv')
-df.to_excel('/home/tml/Nutstore Files/ubuntu/paper/data/csv/' +
+df.to_excel('/project/nutstore/ubuntu/paper/data/csv/' +
             'latest' + '.xlsx')
 
 

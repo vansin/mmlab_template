@@ -4,6 +4,7 @@ import os
 import os.path as osp
 # import time
 import warnings
+from xmlrpc.client import boolean
 
 import mmcv
 import torch
@@ -61,7 +62,7 @@ def parse_args(config, checkpoint, out):
 
     parser.add_argument(
         '--eval_json',
-        type=float,
+        type=boolean,
         default=False,
         help='score threshold (default: 0.3)')
 

@@ -287,7 +287,8 @@ if __name__ == '__main__':
                         epoch=0,
                         eval_epoch=0,
                         pkl_epoch=0,
-                        cmd=config_name +' --auto-resume'
+                        cmd=config_name +' --auto-resume',
+                        test_cmd = ''
                         )
 
     for root, dirs, files in os.walk('work_dirs'):
@@ -317,6 +318,8 @@ if __name__ == '__main__':
             algorithm_list_stats_dict[config_name]['epoch'] = epoch
             algorithm_list_stats_dict[config_name]['eval_epoch'] = eval_epoch
             algorithm_list_stats_dict[config_name]['pkl_epoch'] = pkl_epoch
+            algorithm_list_stats_dict[config_name]['test_cmd'] = 'python tools/test_batch.py --work_dirs ' + root
+            
 
 
 

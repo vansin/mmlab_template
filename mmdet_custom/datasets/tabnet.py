@@ -9,7 +9,8 @@ import mmcv
 import numpy as np
 from mmcv.utils import print_log
 
-from mmdet.core import eval_map, eval_recalls
+from mmdet.core import eval_recalls
+from mmdet_custom.core.evaluation.mean_ap import eval_map
 # from .api_wrappers import COCO, COCOeval
 from mmdet.datasets.api_wrappers import COCO
 from mmdet.datasets.builder import DATASETS

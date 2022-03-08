@@ -22,8 +22,7 @@ model = dict(
         patch_norm=True,
         out_indices=(0, 1, 2, 3),
         with_cp=False,
-        convert_weights=True,
-        init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
+        convert_weights=True),
     neck=dict(in_channels=[96, 192, 384, 768]))
 
 optimizer = dict(

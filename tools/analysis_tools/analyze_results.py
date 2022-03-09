@@ -9,6 +9,7 @@ from mmcv import Config, DictAction
 from mmdet.core.evaluation import eval_map
 from mmdet.core.visualization import imshow_gt_det_bboxes
 from mmdet.datasets import build_dataset, get_loading_pipeline
+import custom
 
 
 def bbox_map_eval(det_result, annotation):

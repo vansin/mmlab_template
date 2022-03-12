@@ -127,3 +127,5 @@ checkpoints
 results
 
 .env
+
+*.onnx

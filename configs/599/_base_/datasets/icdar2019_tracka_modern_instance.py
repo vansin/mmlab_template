@@ -1,6 +1,6 @@
 # dataset settings
-dataset_type = 'FireDataset'
-data_root = '/home/'
+dataset_type = 'TableDataset'
+data_root = 'data/table/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -33,19 +33,18 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file='/tmp/train.json',
-        img_prefix=data_root,
+        ann_file='data/icdar2019/modern_train.json',
+        img_prefix='data/icdar2019/training/TRACKA/ground_truth',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file='/tmp/train.json',
-        img_prefix=data_root,
+        ann_file='data/icdar2019/modern_test.json',
+        img_prefix='data/icdar2019/test/TRACKA/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='/tmp/train.json',
-        img_prefix=data_root,
+        ann_file='data/icdar2019/modern_test.json',
+        img_prefix='data/icdar2019/test/TRACKA/',
         pipeline=test_pipeline))
-
-# evaluation = dict(metric=['bbox', 'segm'], interval=10)
-evaluation = dict(metric='mAP', interval=200)
+# evaluation = dict(metric=['bbox', 'segm'])
+evaluation = dict(metric='mAP', interval=2000)

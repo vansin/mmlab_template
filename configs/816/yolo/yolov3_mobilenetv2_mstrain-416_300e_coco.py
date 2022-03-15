@@ -134,5 +134,5 @@ lr_config = dict(
 # runtime settings
 runner = dict(type='EpochBasedRunner', max_epochs=30)
 # evaluation = dict(interval=5, metric=['bbox'])
-evaluation = dict(interval=15, metric='mAP')
+evaluation = dict(interval=150, metric='mAP')
 find_unused_parameters = True

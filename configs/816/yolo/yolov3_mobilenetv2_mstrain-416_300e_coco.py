@@ -15,7 +15,7 @@ model = dict(
         out_channels=[96, 96, 96]),
     bbox_head=dict(
         type='YOLOV3Head',
-        num_classes=3,
+        num_classes=5,
         in_channels=[96, 96, 96],
         out_channels=[96, 96, 96],
         anchor_generator=dict(
@@ -57,7 +57,7 @@ model = dict(
         nms=dict(type='nms', iou_threshold=0.45),
         max_per_img=100))
 # dataset settings
-dataset_type = 'FireDataset'
+dataset_type = 'D816Dataset'
 data_root = '/home/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)

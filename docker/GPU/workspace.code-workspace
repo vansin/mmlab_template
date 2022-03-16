@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../mmlab_template"
+		},
+		{
+			"path": "../../../../home/elaine/miniconda3/envs/mmlab/lib/python3.9/site-packages/mmcv"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}

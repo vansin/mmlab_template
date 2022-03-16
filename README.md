@@ -50,3 +50,20 @@ pip install -r requirements/build.txt
 ```shell
 CUDA_VISIBLE_DEVICES=1 python tools/test_batch.py
 ```
+
+```shell
+cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" -DMMDEPLOY_TARGET_BACKENDS="trt" \
+-DMMDEPLOY_CODEBASES=all \
+-DMMDEPLOY_BUILD_SDK_PYTHON_API=ON \
+-Dpplcv_DIR=/tmp/ppl.cv/cuda-build/install/lib/cmake/ppl \
+-DOpenCV_DIR=/tmp/opencv-4.5.3/install/lib/cmake/opencv4 \
+-DTENSORRT_DIR=/tmp/TensorRT-8.4.0.6 \
+-DCUDNN_DIR=/tmp/cudnn-8.2.1
+
+
+cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" -DMMDEPLOY_TARGET_BACKENDS="trt" \
+-DMMDEPLOY_CODEBASES=all \
+-DMMDEPLOY_BUILD_SDK_PYTHON_API=ON \
+-DTENSORRT_DIR=/project/TensorRT-8.4.0.6 \
+-DCUDNN_DIR=/project/cuda
+```

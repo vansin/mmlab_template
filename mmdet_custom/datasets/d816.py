@@ -23,7 +23,7 @@ from mmdet.core import eval_map, eval_recalls
 @DATASETS.register_module()
 class D816Dataset(CustomDataset):
 
-    CLASSES = ('garbage_bag', 'person', 'carton', 'bottle', 'construction_waste')
+    CLASSES = ('garbage_bag', 'person', 'carton', 'bottle', 'construction_waste', 'toilet_paper', 'cigarette_case')
 
     PALETTE = [(220, 20, 60), (119, 11, 32), (0, 0, 142), (0, 0, 230),
                (106, 0, 228), (0, 60, 100), (0, 80, 100), (0, 0, 70),

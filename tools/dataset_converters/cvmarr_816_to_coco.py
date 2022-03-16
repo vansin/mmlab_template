@@ -10,7 +10,7 @@ import mmcv
 import numpy as np
 
 def fire_classes():
-    return ['garbage_bag', 'person', 'carton', 'bottle', 'construction_waste']
+    return ['garbage_bag', 'person', 'carton', 'bottle', 'construction_waste', 'toilet_paper', 'cigarette_case']
 
 label_ids = {name: i for i, name in enumerate(fire_classes())}
 

@@ -68,6 +68,9 @@ cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DE
 -DTENSORRT_DIR=/project/train/TensorRT-8.4.0.6 \
 -DCUDNN_DIR=/project/train/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive
 
+cmake --build . -- -j$(nproc) && cmake --install .
+
+
 
 cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" -DMMDEPLOY_TARGET_BACKENDS="trt" \
 -DMMDEPLOY_CODEBASES=all \
@@ -75,8 +78,35 @@ cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DE
 -DTENSORRT_DIR=/project/TensorRT-8.4.0.6 \
 -DCUDNN_DIR=/project/cuda
 
-
+export PATH=/usr/local/cuda-11.0:$PATH
 export LD_LIBRARY_PATH=/project/train/TensorRT-8.4.0.6/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/project/train/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:$LD_LIBRARY_PATH
 
+```
+
+
+
+python tools/deploy.py \
+/project/train/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt_dynamic-320x320-1344x1344.py  \
+/project/train/models/retinanet_r50_fpn_1x_coco.py \
+/project/train/models/epoch_10.pth \
+/home/data/816/street_garbage_public_roads_avenue_CID_train_p_day_20220127_1009.jpg \
+--device cuda \
+--work-dir /project/train/models --dump-info
+```
+
+```shell
+Driver:   Not Selected
+Toolkit:  Installed in /usr/local/cuda-11.3/
+Samples:  Installed in /root/, but missing recommended libraries
+
+Please make sure that
+ -   PATH includes /usr/local/cuda-11.3/bin
+ -   LD_LIBRARY_PATH includes /usr/local/cuda-11.3/lib64, or, add /usr/local/cuda-11.3/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run cuda-uninstaller in /usr/local/cuda-11.3/bin
+***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 465.00 is required for CUDA 11.3 functionality to work.
+To install the driver using this installer, run the following command, replacing <CudaInstaller> with the name of this run file:
+    sudo <CudaInstaller>.run --silent --driver
 ```

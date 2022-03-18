@@ -66,13 +66,14 @@ export PATH=/usr/local/cuda-11.0:$PATH
 export LD_LIBRARY_PATH=/project/TensorRT-8.4.0.6/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/project/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/project/mmlab_template/mmdeploy/build/lib
 
 ```
 
 
 
 python tools/deploy.py \
-/project/train/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt_dynamic-320x320-1344x1344.py  \
+/project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt_dynamic-320x320-1344x1344.py  \
 /project/train/models/retinanet_r50_fpn_1x_coco.py \
 /project/train/models/epoch_10.pth \
 /home/data/816/street_garbage_public_roads_avenue_CID_train_p_day_20220127_1009.jpg \
@@ -96,6 +97,6 @@ To install the driver using this installer, run the following command, replacing
 ```
 
 ```shell
-export PYTHONPATH=/project/train/mmlab_template/mmdeploy/build/lib
+export PYTHONPATH=/project/mmlab_template/mmdeploy/build/lib
 
 ```

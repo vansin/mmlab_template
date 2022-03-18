@@ -110,3 +110,8 @@ To uninstall the CUDA Toolkit, run cuda-uninstaller in /usr/local/cuda-11.3/bin
 To install the driver using this installer, run the following command, replacing <CudaInstaller> with the name of this run file:
     sudo <CudaInstaller>.run --silent --driver
 ```
+
+```shell
+export PYTHONPATH=/project/train/mmlab_template/mmdeploy/build/lib
+
+```

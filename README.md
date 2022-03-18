@@ -52,35 +52,19 @@ CUDA_VISIBLE_DEVICES=1 python tools/test_batch.py
 ```
 
 ```shell
-cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" -DMMDEPLOY_TARGET_BACKENDS="trt" \
--DMMDEPLOY_CODEBASES=all \
--DMMDEPLOY_BUILD_SDK_PYTHON_API=ON \
--Dpplcv_DIR=/tmp/ppl.cv/cuda-build/install/lib/cmake/ppl \
--DOpenCV_DIR=/tmp/opencv-4.5.3/install/lib/cmake/opencv4 \
--DTENSORRT_DIR=/tmp/TensorRT-8.4.0.6 \
--DCUDNN_DIR=/tmp/cudnn-8.2.1
 
 cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" -DMMDEPLOY_TARGET_BACKENDS="trt" \
 -DMMDEPLOY_CODEBASES=all \
 -DMMDEPLOY_BUILD_SDK_PYTHON_API=ON \
 -Dpplcv_DIR=/project/train/ppl.cv/cuda-build/install/lib/cmake/ppl \
 -DOpenCV_DIR=/usr/local/lib/cmake/opencv4 \
--DTENSORRT_DIR=/project/train/TensorRT-8.4.0.6 \
--DCUDNN_DIR=/project/train/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive
-
+-DTENSORRT_DIR=/project/TensorRT-8.4.0.6 \
+-DCUDNN_DIR=/project/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive
 cmake --build . -- -j$(nproc) && cmake --install .
 
-
-
-cmake .. -DCMAKE_CXX_COMPILER=g++-7 -DMMDEPLOY_BUILD_SDK=ON -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" -DMMDEPLOY_TARGET_BACKENDS="trt" \
--DMMDEPLOY_CODEBASES=all \
--DMMDEPLOY_BUILD_SDK_PYTHON_API=ON \
--DTENSORRT_DIR=/project/TensorRT-8.4.0.6 \
--DCUDNN_DIR=/project/cuda
-
 export PATH=/usr/local/cuda-11.0:$PATH
-export LD_LIBRARY_PATH=/project/train/TensorRT-8.4.0.6/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/project/train/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/project/TensorRT-8.4.0.6/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/project/cudnn-linux-x86_64-8.3.2.44_cuda11.5-archive/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:$LD_LIBRARY_PATH
 
 ```

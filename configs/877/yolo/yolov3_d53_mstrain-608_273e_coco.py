@@ -14,7 +14,7 @@ model = dict(
         out_channels=[512, 256, 128]),
     bbox_head=dict(
         type='YOLOV3Head',
-        num_classes=3,
+        num_classes=4,
         in_channels=[512, 256, 128],
         out_channels=[1024, 512, 256],
         anchor_generator=dict(
@@ -56,7 +56,7 @@ model = dict(
         nms=dict(type='nms', iou_threshold=0.45),
         max_per_img=100))
 # dataset settings
-dataset_type = 'FireDataset'
+dataset_type = 'D877Dataset'
 data_root = '/home/'
 img_norm_cfg = dict(mean=[0, 0, 0], std=[255., 255., 255.], to_rgb=True)
 train_pipeline = [

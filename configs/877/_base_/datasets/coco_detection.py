@@ -1,5 +1,5 @@
 # dataset settings
-dataset_type = 'FireDataset'
+dataset_type = 'D877Dataset'
 data_root = '/home/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)

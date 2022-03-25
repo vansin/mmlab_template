@@ -56,7 +56,7 @@ model = dict(
         nms=dict(type='nms', iou_threshold=0.45),
         max_per_img=100))
 # dataset settings
-dataset_type = 'D877Dataset'
+dataset_type = 'D10100Dataset'
 data_root = '/home/'
 img_norm_cfg = dict(mean=[0, 0, 0], std=[255., 255., 255.], to_rgb=True)
 train_pipeline = [
@@ -99,17 +99,17 @@ data = dict(
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
-        ann_file='/tmp/877.json',
+        ann_file='/tmp/10100.json',
         img_prefix=data_root,
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file='/tmp/877.json',
+        ann_file='/tmp/10100.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='/tmp/877.json',
+        ann_file='/tmp/10100.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 # optimizer

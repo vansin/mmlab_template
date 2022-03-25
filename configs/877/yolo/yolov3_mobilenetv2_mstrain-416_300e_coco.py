@@ -132,6 +132,6 @@ lr_config = dict(
     warmup_ratio=0.0001,
     step=[24, 28])
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=50)
+runner = dict(type='EpochBasedRunner', max_epochs=500)
 evaluation = dict(interval=2000, metric=['mAP'])
 find_unused_parameters = True

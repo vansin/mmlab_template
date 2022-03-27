@@ -15,7 +15,7 @@ model = dict(
         out_channels=[96, 96, 96]),
     bbox_head=dict(
         type='YOLOV3Head',
-        num_classes=2,
+        num_classes=1,
         in_channels=[96, 96, 96],
         out_channels=[96, 96, 96],
         anchor_generator=dict(
@@ -57,7 +57,7 @@ model = dict(
         nms=dict(type='nms', iou_threshold=0.45),
         max_per_img=100))
 # dataset settings
-dataset_type = 'D10100Dataset'
+dataset_type = 'D10137Dataset'
 data_root = '/home/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -108,17 +108,17 @@ data = dict(
         times=10,
         dataset=dict(
             type=dataset_type,
-            ann_file='/tmp/10100.json',
+            ann_file='/tmp/10137.json',
             img_prefix=data_root,
             pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
-        ann_file='/tmp/10100.json',
+        ann_file='/tmp/10137.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='/tmp/10100.json',
+        ann_file='/tmp/10137.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 # optimizer

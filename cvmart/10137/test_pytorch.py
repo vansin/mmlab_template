@@ -4,15 +4,15 @@ import mmcv
 
 def init():
 
-    config_file = '/project/train/models/877/yolov3_mobilenetv2_320_300e_coco.py'
-    checkpoint_file = '/project/train/models/877/epoch_50.pth'
+    config_file = '/project/train/models/10137/yolov3_mobilenetv2_320_300e_coco.py'
+    checkpoint_file = '/project/train/models/10137/epoch_5.pth'
     # build the model from a config file and a checkpoint file
     model = init_detector(config_file, checkpoint_file)
     return model
 
 def process_image(handle=None, input_image=None, args=None, **kwargs):
     
-    CLASSES = ['wheel', 'mirror', 'bus_route_map', 'car_door']
+    CLASSES = ['person']
     result = inference_detector(handle, input_image)
     # Process image here
     objects = []

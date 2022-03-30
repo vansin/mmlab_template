@@ -14,6 +14,9 @@ pip install -v -e .
 cd mmdetection
 pip install -v -e .
 
+git pull https://github.com/open-mmlab/mmdeploy
+更新依赖项
+
 ```
 
 ### install latest pytorch

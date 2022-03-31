@@ -1,8 +1,15 @@
-# dataset settings
-dataset_type = 'D10032Dataset'
-data_root = '/home/'
+_base_ = './faster_rcnn_r50_fpn_1x_coco.py'
+model = dict(
+    backbone=dict(
+        norm_cfg=dict(requires_grad=False),
+        norm_eval=True,
+        style='caffe',
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='open-mmlab://detectron2/resnet50_caffe')))
+# use caffe img_norm
 img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+    mean=[103.530, 116.280, 123.675], std=[1.0, 1.0, 1.0], to_rgb=False)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
@@ -29,22 +36,6 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    train=dict(
-        type=dataset_type,
-        ann_file='/tmp/10032.json',
-        img_prefix=data_root,
-        pipeline=train_pipeline),
-    val=dict(
-        type=dataset_type,
-        ann_file='/tmp/10032.json',
-        img_prefix=data_root,
-        pipeline=test_pipeline),
-    test=dict(
-        type=dataset_type,
-        ann_file='/tmp/10032.json',
-        img_prefix=data_root,
-        pipeline=test_pipeline))
-# evaluation = dict(interval=10, metric='bbox')
-evaluation = dict(metric='mAP', interval=2000)
+    train=dict(pipeline=train_pipeline),
+    val=dict(pipeline=test_pipeline),
+    test=dict(pipeline=test_pipeline))

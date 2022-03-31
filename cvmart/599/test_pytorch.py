@@ -4,8 +4,8 @@ import mmcv
 
 def init():
 
-    config_file = '/project/train/models/yolov3_mobilenetv2_320_300e_coco.py'
-    checkpoint_file = '/project/train/models/epoch_4.pth'
+    config_file = '/project/train/models/yolov3_mobilenetv2_mstrain-416_300e_coco.py'
+    checkpoint_file = '/project/train/models/latest.pth'
     # build the model from a config file and a checkpoint file
     model = init_detector(config_file, checkpoint_file)
     return model

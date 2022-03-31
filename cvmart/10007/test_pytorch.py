@@ -1,6 +1,7 @@
 import json
 from mmdet.apis import init_detector, inference_detector
 import mmcv
+from mmdet_custom.datasets import D10007Dataset
 
 def init():
 
@@ -12,7 +13,7 @@ def init():
 
 def process_image(handle=None, input_image=None, args=None, **kwargs):
     
-    CLASSES = ['person']
+    CLASSES = D10007Dataset.CLASSES
     result = inference_detector(handle, input_image)
     # Process image here
     objects = []

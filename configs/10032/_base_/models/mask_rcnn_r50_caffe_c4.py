@@ -53,7 +53,7 @@ model = dict(
             with_avg_pool=True,
             roi_feat_size=7,
             in_channels=2048,
-            num_classes=1,
+            num_classes=4,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
                 target_means=[0., 0., 0., 0.],
@@ -68,7 +68,7 @@ model = dict(
             num_convs=0,
             in_channels=2048,
             conv_out_channels=256,
-            num_classes=1,
+            num_classes=4,
             loss_mask=dict(
                 type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))),
     # model training and testing settings

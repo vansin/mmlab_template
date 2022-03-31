@@ -21,7 +21,7 @@ from mmdet.core import eval_map, eval_recalls
 
 
 @DATASETS.register_module()
-class D10137Dataset(CustomDataset):
+class D10032Dataset(CustomDataset):
 
     CLASSES = ('person', 'hand_with_glove', 'hand_without_glove', 'hand')
 

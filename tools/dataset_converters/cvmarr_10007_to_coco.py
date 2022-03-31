@@ -236,7 +236,7 @@ def parse_args():
 def main():
 
     xml_path = ['/home/data/549']
-    json_out_path = '/tmp/10137.json'
+    json_out_path = '/tmp/10007.json'
     cvt_annotations(
         xml_path,
         json_out_path,

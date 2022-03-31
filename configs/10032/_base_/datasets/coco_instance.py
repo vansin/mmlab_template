@@ -1,5 +1,5 @@
 # dataset settings
-dataset_type = 'D10137Dataset'
+dataset_type = 'D10032Dataset'
 data_root = '/home/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -33,17 +33,17 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file='/tmp/10137.json',
+        ann_file='/tmp/10032.json',
         img_prefix=data_root,
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file='/tmp/10137.json',
+        ann_file='/tmp/10032.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='/tmp/10137.json',
+        ann_file='/tmp/10032.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 

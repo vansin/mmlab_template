@@ -10,7 +10,7 @@ import mmcv
 import numpy as np
 
 def fire_classes():
-    CLASSES = ('person', 'hand_with_glove', 'hand_without_glove', 'hand')
+    return ['person', 'hand_with_glove', 'hand_without_glove', 'hand']
 
 label_ids = {name: i for i, name in enumerate(fire_classes())}
 

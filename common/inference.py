@@ -1,12 +1,12 @@
 from mmdet.apis import init_detector, inference_detector
 import json
-config_file = 'work_dirs/icdar2019_fire/detectors/cascade_rcnn_r50_rfp_1x_coco/cascade_rcnn_r50_rfp_1x_coco.py'
-checkpoint_file = 'work_dirs/icdar2019_fire/detectors/cascade_rcnn_r50_rfp_1x_coco/epoch_12.pth'
+config_file = '/project/train/models/faster_rcnn_r50_fpn_1x_coco.py'
+checkpoint_file = '/project/train/models/epoch_12.pth'
 
 
 model = init_detector(config_file, checkpoint_file)
 
-img = '/home/data/599/2119a7.jpg'  # or img = mmcv.imread(img), which will only load it once
+img = '/home/data/599/fire_8556.jpg'  # or img = mmcv.imread(img), which will only load it once
 result = inference_detector(model, img)
 objects = []
 fires = result[0]

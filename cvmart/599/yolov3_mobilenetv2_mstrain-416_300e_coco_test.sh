@@ -12,7 +12,7 @@ export CUDNN_DIR=/project/cuda
 export LD_LIBRARY_PATH=${CUDNN_DIR}/lib:${LD_LIBRARY_PATH}
 
 python /project/mmlab_template/mmdeploy/tools/test.py \
-/project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt_dynamic-320x320-1344x1344.py \
+/project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt_dynamic-160x160-608x608.py \
 /project/mmlab_template/configs/${DNAME}/yolo/yolov3_mobilenetv2_mstrain-416_300e_coco.py \
 --model /project/train/models/${DNAME}/end2end.engine \
 --out /project/train/models/${DNAME}/out.pkl \

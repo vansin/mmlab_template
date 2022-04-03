@@ -5,14 +5,35 @@
 # pip install mmcv-full==1.4.7 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
 
 
-wget https://cdn.vansin.top/cudnn-11.3-linux-x64-v8.2.1.32.tgz
-wget https://cdn.vansin.top/cuda_11.1.0_455.23.05_linux.run
-wget https://cdn.vansin.top/TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz
+# wget https://cdn.vansin.top/cudnn-11.3-linux-x64-v8.2.1.32.tgz
+# wget https://cdn.vansin.top/cuda_11.1.0_455.23.05_linux.run
+# wget https://cdn.vansin.top/TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz
 
 
-tar -zxvf TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz
-tar -zxvf cudnn-11.3-linux-x64-v8.2.1.32.tgz
+# download the cudnn 
 
+tar -zxvf TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz*
+tar -zxvf cudnn-11.3-linux-x64-v8.2.1.32.tgz*
+
+
+sudo apt-get update
+sudo apt-get install python3-tk -y
+
+pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+pip install mmcv-full==1.4.7 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
+wget https://cdn.vansin.top/deep/clash
+chmod u+x clash
+mkdir /project/.config/clash
+wget https://cdn.vansin.top/deep/Country.mmdb -O /project/.config/clash/Country.mmdb
+wget https://cdn.vansin.top/config1.yaml -O /project/.config/clash/config.yaml
+
+./clash & > log.log
+
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+
+git clone https://github.com/vansin/mmlab_template.git
+cd mmlab_template
 git submodule update --init --recursive
 pip install -r mmdetection/requirements/build.txt
 pip install -v -e .
@@ -25,6 +46,10 @@ export PPLCV_DIR=$(pwd)
 
 
 pip install onnxruntime==1.8.1
+
+
+export http_proxy="http://127.0.0.1:7890"
+export https_proxy="http://127.0.0.1:7890"
 
 cd /project
 wget https://github.com/microsoft/onnxruntime/releases/download/v1.8.1/onnxruntime-linux-x64-1.8.1.tgz

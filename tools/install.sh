@@ -10,6 +10,9 @@ wget https://cdn.vansin.top/cuda_11.1.0_455.23.05_linux.run
 wget https://cdn.vansin.top/TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz
 
 
+tar -zxvf TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz
+tar -zxvf cudnn-11.3-linux-x64-v8.2.1.32.tgz
+
 git submodule update --init --recursive
 pip install -r mmdetection/requirements/build.txt
 pip install -v -e .
@@ -20,7 +23,13 @@ cd /project/ppl.cv
 export PPLCV_DIR=$(pwd)
 ./build.sh cuda
 
-cd /project/onnxruntime-linux-x64-1.8.1
+
+pip install onnxruntime==1.8.1
+
+cd /project
+wget https://github.com/microsoft/onnxruntime/releases/download/v1.8.1/onnxruntime-linux-x64-1.8.1.tgz
+tar -zxvf onnxruntime-linux-x64-1.8.1.tgz
+cd onnxruntime-linux-x64-1.8.1
 export ONNXRUNTIME_DIR=$(pwd)
 export LD_LIBRARY_PATH=$ONNXRUNTIME_DIR/lib:$LD_LIBRARY_PATH
 

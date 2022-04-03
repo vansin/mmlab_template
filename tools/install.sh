@@ -18,6 +18,8 @@ tar -zxvf cudnn-11.3-linux-x64-v8.2.1.32.tgz*
 
 sudo apt-get update
 sudo apt-get install python3-tk -y
+sudo apt-get install libspdlog-dev -y
+
 
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 pip install mmcv-full==1.4.7 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
@@ -40,23 +42,25 @@ pip install -v -e .
 pip install -v -e mmdetection
 pip install -v -e mmclassification
 
+# 安装ppl.cv
+cd /project/
+git clone https://github.com/openppl-public/ppl.cv.git
 cd /project/ppl.cv
 export PPLCV_DIR=$(pwd)
 ./build.sh cuda
 
 
+# 安装onnxruntime
 pip install onnxruntime==1.8.1
-
-
 export http_proxy="http://127.0.0.1:7890"
 export https_proxy="http://127.0.0.1:7890"
-
 cd /project
 wget https://github.com/microsoft/onnxruntime/releases/download/v1.8.1/onnxruntime-linux-x64-1.8.1.tgz
 tar -zxvf onnxruntime-linux-x64-1.8.1.tgz
 cd onnxruntime-linux-x64-1.8.1
 export ONNXRUNTIME_DIR=$(pwd)
 export LD_LIBRARY_PATH=$ONNXRUNTIME_DIR/lib:$LD_LIBRARY_PATH
+
 
 cd /project
 pip install TensorRT-8.2.3.0/python/tensorrt-8.2.3.0-cp39-none-linux_x86_64.whl

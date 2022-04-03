@@ -18,7 +18,7 @@ import mmdeploy_python
 
 def init():
     
-    detector = mmdeploy_python.Detector('/project/train/models', 'cuda', 0)
+    detector = mmdeploy_python.Detector('/project/train/599/models', 'cuda', 0)
     return detector
 
 def process_image(handle=None, input_image=None, args=None, **kwargs):

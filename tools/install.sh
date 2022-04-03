@@ -5,6 +5,9 @@
 # pip install mmcv-full==1.4.7 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
 
 
+wget https://cdn.vansin.top/cudnn-11.3-linux-x64-v8.2.1.32.tgz
+wget https://cdn.vansin.top/cuda_11.1.0_455.23.05_linux.run
+wget https://cdn.vansin.top/TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz
 
 
 git submodule update --init --recursive

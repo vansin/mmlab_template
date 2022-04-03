@@ -23,7 +23,7 @@ sudo apt-get install libspdlog-dev -y
 
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 pip install mmcv-full==1.4.7 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
-wget https://cdn.vansin.top/deep/clash
+wget https://cdn.vansin.top/deep/clash -O /project/clash
 chmod u+x clash
 mkdir /project/.config/clash
 wget https://cdn.vansin.top/deep/Country.mmdb -O /project/.config/clash/Country.mmdb

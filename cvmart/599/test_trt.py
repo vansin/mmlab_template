@@ -1,5 +1,7 @@
 import json
-import cv2
+from torch import R
+from mmdet_custom.datasets import FireDataset as NormalDataset
+
 
 
 
@@ -23,37 +25,37 @@ def process_image(handle=None, input_image=None, args=None, **kwargs):
     
     # result = inference_detector(handle, input_image)]
 
-    print(input_image)
 
     result = handle([input_image])
-    # Process image here
     objects = []
-    fires = result[0][0]
-    for fire in fires:
-        obj = dict(
-            xmin = int(fire[0].item()),
-            ymin= int(fire[1].item()),
-            xmax=int(fire[2].item()),
-            ymax=int(fire[3].item()),
-            confidence=fire[4].item(),
-            name = "fire"
-        )
+    v1, v2, v3 = result[0][0], result[0][1], result[0][2]
+    target_count = 0
 
+    for i,j,k in zip(v1, v2, v3):
+
+        print(i,j,k)
+        obj = dict(
+            xmin=i[0].item(),
+            ymin=i[1].item(),
+            xmax=i[2].item(),
+            ymax=i[3].item(),
+            confidence=i[4].item(),
+            name=NormalDataset.CLASSES[j.item()]
+        )
         if obj['confidence']>0.5:
             objects.append(obj)
-
-    # model.show_result(img, result)
-    # model.show_result(img, result, out_file='result.jpg', score_thr = 0.3)
+            if obj['name']==NormalDataset.CLASSES[0]:
+                target_count+=1
 
     r_json = dict()
     r_json['algorithm_data'] = dict(target_info=objects, is_alert=False, target_count=0)
     r_json['model_data'] = dict(objects=objects)
 
-    if objects.__len__()>0:
+        
+    if target_count>0:
         r_json['algorithm_data']['is_alert'] = True
-        r_json['algorithm_data']['target_count'] = objects.__len__()
+        r_json['algorithm_data']['target_count'] = target_count
 
-    # return json.dumps(objects, indent=4)
+    a = json.dumps(r_json, indent=4)
 
-    return json.dumps(r_json, indent=4)
-
+    return a

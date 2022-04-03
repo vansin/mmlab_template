@@ -9,7 +9,7 @@ export DNAME=599
 export TENSORRT_DIR=/project/TensorRT-8.2.3.0
 export LD_LIBRARY_PATH=$TENSORRT_DIR/lib:$TENSORRT_DIR
 export CUDNN_DIR=/project/cuda
-export LD_LIBRARY_PATH=${CUDNN_DIR}/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${CUDNN_DIR}/lib64:${LD_LIBRARY_PATH}
 
 python /project/mmlab_template/mmdeploy/tools/test.py \
 /project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt_dynamic-160x160-608x608.py \

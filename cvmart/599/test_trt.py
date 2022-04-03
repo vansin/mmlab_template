@@ -9,7 +9,7 @@ import os
 os.system('export TENSORRT_DIR=/project/TensorRT-8.2.3.0')
 os.system('export LD_LIBRARY_PATH=$TENSORRT_DIR/lib:$TENSORRT_DIR')
 os.system('export CUDNN_DIR=/project/cuda')
-os.system('export LD_LIBRARY_PATH=${CUDNN_DIR}/lib:${LD_LIBRARY_PATH}')
+os.system('export LD_LIBRARY_PATH=${CUDNN_DIR}/lib64:${LD_LIBRARY_PATH}')
 
 import sys
 sys.path.append('/project/mmlab_template/mmdeploy/build/lib/')

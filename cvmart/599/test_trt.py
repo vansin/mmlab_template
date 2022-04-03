@@ -1,10 +1,5 @@
 import json
-from torch import R
 from mmdet_custom.datasets import FireDataset as NormalDataset
-
-
-
-
 import os
 os.system('export TENSORRT_DIR=/project/TensorRT-8.2.3.0')
 os.system('export LD_LIBRARY_PATH=$TENSORRT_DIR/lib:$TENSORRT_DIR')

@@ -14,6 +14,11 @@
 tar -zxvf TensorRT-8.2.3.0.Linux.x86_64-gnu.cuda-11.4.cudnn8.2.tar.gz*
 tar -zxvf cudnn-11.3-linux-x64-v8.2.1.32.tgz*
 
+cp /project/cuda/lib64/* /usr/local/cuda/lib64/
+cp /project/cuda/include/* /usr/local/cuda/include
+
+cp /project/ 
+
 sudo apt-get update
 sudo apt-get install libspdlog-dev -y
 

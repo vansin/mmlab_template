@@ -46,7 +46,7 @@
 
 
 import json
-from mmdet_custom.datasets import FireDataset as NormalDataset
+from mmdet_custom.datasets import D10185Dataset as NormalDataset
 import os
 os.system('export TENSORRT_DIR=/project/TensorRT-8.2.3.0')
 os.system('export LD_LIBRARY_PATH=$TENSORRT_DIR/lib:$TENSORRT_DIR')

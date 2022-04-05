@@ -1,3 +1,4 @@
+
 export DNAME=10185
 
 # python /project/mmlab_template/tools/dataset_converters/cvmarr_${DNAME}_to_coco.py
@@ -13,10 +14,9 @@ export LD_LIBRARY_PATH=${CUDNN_DIR}/lib64:${LD_LIBRARY_PATH}
 
 export PATH=$PATH:/usr/local/cuda-11.1/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH://usr/local/cuda-11.1/lib64
-
-
+python /project/mmlab_template/tools/dataset_converters/cvmarr_${DNAME}_to_coco.py
 python /project/mmlab_template/mmdeploy/tools/deploy.py \
-/project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt-fp16_dynamic-160x160-608x608.py \
+/project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt-int8_dynamic-160x160-608x608.py \
 /project/mmlab_template/configs/${DNAME}/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \
 /project/train/models/${DNAME}/latest.pth \
 /home/data/901/171.jpg \

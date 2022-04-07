@@ -101,7 +101,7 @@ def main():
     # work_dir is determined in this priority: CLI > segment in file > filename
     if args.work_dir is not None:
         # update configs according to CLI args if args.work_dir is not None
-        # cfg.work_dir = args.work_dir
+        cfg.work_dir = args.work_dir
         cfg.work_dir = osp.join(args.work_dir, osp.splitext(osp.relpath(args.config, 'configs'))[0])
 
     elif cfg.get('work_dir', None) is None:
@@ -141,7 +141,8 @@ def main():
     cfg.dump(osp.join(cfg.work_dir, osp.basename(args.config)))
     # init the logger before other steps
     timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
-    log_file = osp.join(cfg.work_dir, f'{timestamp}.log')
+    # log_file = osp.join(cfg.work_dir, f'{timestamp}.log')
+    log_file = None
     logger = get_root_logger(log_file=log_file, log_level=cfg.log_level)
 
     # init the meta dict to record some important information such as

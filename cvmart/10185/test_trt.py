@@ -98,9 +98,8 @@ def process_image(handle=None, input_image=None, args=None, **kwargs):
     r_json = dict()
     r_json['algorithm_data'] = dict(target_info=objects, is_alert=False, target_count=0)
     r_json['model_data'] = dict(objects=objects)
-
         
-    if target_count>21:
+    if target_count> args['threshold_count']:
         r_json['algorithm_data']['is_alert'] = True
         r_json['algorithm_data']['target_count'] = target_count
 

@@ -1,4 +1,4 @@
-export DNAME=10185
+export DNAME=9985
 export algorthm_path=yolox/yolox_s_8x8_300e_coco
 
 cd /project/mmlab_template

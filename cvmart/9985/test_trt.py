@@ -46,7 +46,7 @@
 
 
 import json
-from mmdet_custom.datasets import D10185Dataset as NormalDataset
+from mmdet_custom.datasets import D9985Dataset as NormalDataset
 import os
 os.system('export TENSORRT_DIR=/project/TensorRT-8.2.3.0')
 os.system('export LD_LIBRARY_PATH=$TENSORRT_DIR/lib:$TENSORRT_DIR')
@@ -66,7 +66,7 @@ os.system('echo $LD_LIBRARY_PATH')
 
 def init():
     
-    detector = mmdeploy_python.Detector('/project/train/models/10185', 'cuda', 0)
+    detector = mmdeploy_python.Detector('/project/train/models/9985', 'cuda', 0)
     return detector
 
 def process_image(handle=None, input_image=None, args=None, **kwargs):

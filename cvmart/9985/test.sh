@@ -1,4 +1,4 @@
-export DNAME=10185
+export DNAME=9985
 export img_paht=/home/data/918/ZDScrowddensity20220402_V1_train_60927.jpg
 export algorthm_path=yolox/yolox_s_8x8_300e_coco
 

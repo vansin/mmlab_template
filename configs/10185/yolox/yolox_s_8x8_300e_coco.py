@@ -115,7 +115,7 @@ optimizer_config = dict(grad_clip=None)
 max_epochs = 300
 num_last_epochs = 15
 resume_from = None
-interval = 1
+interval = 5
 # interval = 10
 
 # learning policy

@@ -23,7 +23,7 @@ model = dict(
 
 # dataset settings
 data_root = '/home/'
-dataset_type = 'D10185Dataset'
+dataset_type = 'D9985Dataset'
 
 train_pipeline = [
     dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),
@@ -57,7 +57,7 @@ train_dataset = dict(
     type='MultiImageMixDataset',
     dataset=dict(
         type=dataset_type,
-        ann_file= '/tmp/10185.json',
+        ann_file= '/tmp/9985.json',
         img_prefix=data_root,
         pipeline=[
             dict(type='LoadImageFromFile'),
@@ -92,12 +92,12 @@ data = dict(
     train=train_dataset,
     val=dict(
         type=dataset_type,
-        ann_file= '/tmp/10185.json',
+        ann_file= '/tmp/9985.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='/tmp/10185.json',
+        ann_file='/tmp/9985.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 

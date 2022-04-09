@@ -66,13 +66,13 @@ os.system('echo $LD_LIBRARY_PATH')
 
 def init():
     
-    detector = mmdeploy_python.Detector('/project/train/models/10185', 'cuda', 0)
+    detector = mmdeploy_python.Detector('/project/train/models/10185/yolox/yolox_s_8x8_300e_coco', 'cuda', 0)
     return detector
 
 def process_image(handle=None, input_image=None, args=None, **kwargs):
     
     # result = inference_detector(handle, input_image)]
-    args = json.loads(args)
+    # args = json.loads(args)
 
     result = handle([input_image])
     objects = []
@@ -96,11 +96,12 @@ def process_image(handle=None, input_image=None, args=None, **kwargs):
                 target_count+=1
 
     r_json = dict()
-    r_json['algorithm_data']['target_count'] = target_count
 
     r_json['algorithm_data'] = dict(target_info=objects, is_alert=False, target_count=0)
+    r_json['algorithm_data']['target_count'] = target_count
+
     r_json['model_data'] = dict(objects=objects)
-    if target_count> args['threshold_count']:
+    if target_count> 21:
         r_json['algorithm_data']['is_alert'] = True
         r_json['algorithm_data']['target_count'] = target_count
 

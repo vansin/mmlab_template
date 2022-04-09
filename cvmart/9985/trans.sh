@@ -20,7 +20,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.1/lib64
 python /project/mmlab_template/mmdeploy/tools/deploy.py \
 /project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt-fp16_dynamic-320x320-1344x1344.py \
 /project/mmlab_template/configs/${DNAME}/${algorthm_path}.py \
-/project/train/models/${DNAME}/${algorthm_path}/latest.pth \
+/project/train/models/${DNAME}/${algorthm_path}/epoch_20.pth \
 ${img_paht} \
 --work-dir /project/train/models/${DNAME}/${algorthm_path} \
 --device cuda \

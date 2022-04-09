@@ -18,7 +18,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH://usr/local/cuda-11.1/lib64
 python /project/mmlab_template/mmdeploy/tools/deploy.py \
 /project/mmlab_template/mmdeploy/configs/mmdet/detection/detection_tensorrt-fp16_dynamic-320x320-1344x1344.py \
 /project/mmlab_template/configs/${DNAME}/yolo/yolov3_mobilenetv2_mstrain-416_300e_coco.py \
-/project/train/models/${DNAME}/latest.pth \
+/project/train/models/${DNAME}/epoch_20.pth \
 /home/data/918/ZDScrowddensity20220402_V1_train_60927.jpg \
 --work-dir /project/train/models/${DNAME} \
 --device cuda \

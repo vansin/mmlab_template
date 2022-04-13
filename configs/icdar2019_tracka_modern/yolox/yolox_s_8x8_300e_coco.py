@@ -23,7 +23,7 @@ model = dict(
 
 # dataset settings
 data_root = 'data/coco/'
-dataset_type = 'CocoDataset'
+dataset_type = 'TableDataset'
 
 train_pipeline = [
     dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),
@@ -57,8 +57,8 @@ train_dataset = dict(
     type='MultiImageMixDataset',
     dataset=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_train2017.json',
-        img_prefix=data_root + 'train2017/',
+        ann_file= 'data/icdar2019/modern_train.json',
+        img_prefix= 'data/icdar2019/training/TRACKA/ground_truth',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='LoadAnnotations', with_bbox=True)
@@ -92,13 +92,13 @@ data = dict(
     train=train_dataset,
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file='data/icdar2019/modern_test.json',
+        img_prefix='data/icdar2019/test/TRACKA/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file='data/icdar2019/modern_test.json',
+        img_prefix='data/icdar2019/test/TRACKA/',
         pipeline=test_pipeline))
 
 # optimizer
@@ -115,7 +115,7 @@ optimizer_config = dict(grad_clip=None)
 max_epochs = 300
 num_last_epochs = 15
 resume_from = None
-interval = 10
+interval = 2000
 
 # learning policy
 lr_config = dict(
@@ -156,5 +156,5 @@ evaluation = dict(
     # or equal to ‘max_epochs - num_last_epochs’.
     interval=interval,
     dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
-    metric='bbox')
+    metric='mAP')
 log_config = dict(interval=50)

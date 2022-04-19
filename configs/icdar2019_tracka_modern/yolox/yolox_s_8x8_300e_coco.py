@@ -147,7 +147,7 @@ custom_hooks = [
         momentum=0.0001,
         priority=49)
 ]
-checkpoint_config = dict(interval=interval)
+checkpoint_config = dict(interval=5)
 evaluation = dict(
     save_best='auto',
     # The evaluation interval is 'interval' when running epoch is

@@ -155,6 +155,6 @@ evaluation = dict(
     # The evaluation interval is 1 when running epoch is greater than
     # or equal to ‘max_epochs - num_last_epochs’.
     interval=interval,
-    dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
+    # dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
     metric='mAP')
 log_config = dict(interval=50)

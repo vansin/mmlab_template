@@ -22,8 +22,8 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = 'data/coco/'
-dataset_type = 'CocoDataset'
+data_root = 'data/table/'
+dataset_type = 'TableDataset'
 
 train_pipeline = [
     dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),
@@ -57,8 +57,8 @@ train_dataset = dict(
     type='MultiImageMixDataset',
     dataset=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_train2017.json',
-        img_prefix=data_root + 'train2017/',
+        ann_file=data_root + 'annotations/both_train.json',
+        img_prefix=data_root + 'images/',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='LoadAnnotations', with_bbox=True)
@@ -92,13 +92,13 @@ data = dict(
     train=train_dataset,
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'annotations/both_test.json',
+        img_prefix=data_root + 'images/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'annotations/both_test.json',
+        img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
 
 # optimizer
@@ -154,7 +154,7 @@ evaluation = dict(
     # less than ‘max_epochs - num_last_epochs’.
     # The evaluation interval is 1 when running epoch is greater than
     # or equal to ‘max_epochs - num_last_epochs’.
-    interval=interval,
-    dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
+    interval=20000,
+    # dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
     metric='bbox')
 log_config = dict(interval=50)

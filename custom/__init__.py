@@ -1,2 +1,3 @@
 import mmdet_custom.datasets
 import mmdet_custom.datasets.pipelines
+import mmdet_custom.models

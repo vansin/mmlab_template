@@ -124,4 +124,4 @@ lr_config = dict(
     step=[218, 246])
 # runtime settings
 runner = dict(type='EpochBasedRunner', max_epochs=273)
-evaluation = dict(interval=1, metric=['bbox'])
+evaluation = dict(interval=2000, metric=['mAP'])

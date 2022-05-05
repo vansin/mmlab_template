@@ -302,8 +302,10 @@ if __name__ == '__main__':
             print(config_file, ' ', pth_file)
             out = pth_file
             out = out.replace('.pth', '.pkl')
+            out = out.replace('work_dirs', 'work_dirs_no_pth')
 
             eval_json = pth_file.replace('.pth', '_eval.json')
+            eval_json = eval_json.replace('work_dirs', 'work_dirs_no_pth')
             # main(config_file, pth_file, out, eval_json)
 
             main(config_file, pth_file, out, eval_json, args)

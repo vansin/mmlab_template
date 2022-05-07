@@ -3,15 +3,14 @@ _base_ = '../_base_/default_runtime.py'
 model = dict(
     type='TableDet',
     backbone=dict(
-        type='MobileNetV2',
-        out_indices=(2, 4, 6),
-        act_cfg=dict(type='LeakyReLU', negative_slope=0.1),
-        init_cfg=dict(
-            type='Pretrained', checkpoint='open-mmlab://mmdet/mobilenet_v2')),
+        type='Darknet',
+        depth=53,
+        out_indices=(3, 4, 5),
+        init_cfg=dict(type='Pretrained', checkpoint='open-mmlab://darknet53')),
     neck=dict(
         type='YOLOV3Neck',
         num_scales=3,
-        in_channels=[320, 96, 32],
+        in_channels=[1024, 512, 256],
         out_channels=[512, 256, 128]),
     bbox_head=dict(
         type='TableDetHead',

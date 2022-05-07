@@ -3,14 +3,15 @@ _base_ = '../_base_/default_runtime.py'
 model = dict(
     type='TableDet',
     backbone=dict(
-        type='Darknet',
-        depth=53,
-        out_indices=(3, 4, 5),
-        init_cfg=dict(type='Pretrained', checkpoint='open-mmlab://darknet53')),
+        type='MobileNetV2',
+        out_indices=(2, 4, 6),
+        act_cfg=dict(type='LeakyReLU', negative_slope=0.1),
+        init_cfg=dict(
+            type='Pretrained', checkpoint='open-mmlab://mmdet/mobilenet_v2')),
     neck=dict(
         type='YOLOV3Neck',
         num_scales=3,
-        in_channels=[1024, 512, 256],
+        in_channels=[320, 96, 32],
         out_channels=[512, 256, 128]),
     bbox_head=dict(
         type='TableDetHead',
@@ -115,8 +116,8 @@ test_pipeline = [
 #         pipeline=test_pipeline))
 
 data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=4,
+    samples_per_gpu=1,
+    workers_per_gpu=1,
     train=dict(
         type=dataset_type,
         ann_file='data/icdar2019/modern_train.json',

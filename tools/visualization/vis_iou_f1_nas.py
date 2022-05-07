@@ -54,6 +54,9 @@ if __name__ == '__main__':
             print('===========', i, algorithm_list.__len__(),
                   j, evals.__len__(), '=============', name, '============')
             
+            if 'latest_eval.json' in name:
+                continue 
+
             epoch = int(name.split('/')[-1].split('_')[1])
 
             if (name, epoch) in results_dict:

@@ -116,8 +116,8 @@ test_pipeline = [
 #         pipeline=test_pipeline))
 
 data = dict(
-    samples_per_gpu=1,
-    workers_per_gpu=1,
+    samples_per_gpu=8,
+    workers_per_gpu=4,
     train=dict(
         type=dataset_type,
         ann_file='data/icdar2019/modern_train.json',

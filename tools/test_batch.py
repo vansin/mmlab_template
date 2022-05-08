@@ -145,9 +145,6 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
     if args_out is not None and not args_out.endswith(('.pkl', '.pickle')):
         raise ValueError('The output file must be a pkl file.')
 
-    args_config_new = args_config.replace('work_dirs','work_dirs_no_pth')
-    TestEvalStore.put_file(args_config_new, args_config)
-
     cfg = Config.fromfile(args_config)
 
     if args.cfg_options is not None:
@@ -305,6 +302,12 @@ def main():
                 pth_files.append(root + '/' + file_name)
             if file_name.endswith('.py'):
                 config_file = root + '/' + file_name
+
+
+        config_file_key = config_file.replace('work_dirs', 'work_dirs_no_pth')
+        if not TestEvalStore.is_exist(config_file_key):
+            TestEvalStore.put_file(config_file_key, config_file)
+
 
         for j, pth_file in enumerate(pth_files):
             print('===========', i, algorithm_list.__len__(),

@@ -240,9 +240,9 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
                 broadcast_buffers=False)
             outputs = multi_gpu_test(model, data_loader, args.tmpdir, args.gpu_collect)
     else:
-
-        TestEvalStore.get(args_out, args_out)
-        outputs = mmcv.load(args_out)
+        if not eval_json_exist:
+            TestEvalStore.get(args_out, args_out)
+            outputs = mmcv.load(args_out)
 
     # if args_out and not is_out_exist:
     if args_out and not pkl_exist:

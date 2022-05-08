@@ -327,7 +327,7 @@ def main():
 if __name__ == '__main__':
     
     
-    main()
+    # main()
 
     from common.notify.notify_robot import NotifyRobot
     # NotifyRobot('开始训练', '开始训练', '开始训练')

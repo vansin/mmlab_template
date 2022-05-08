@@ -123,7 +123,7 @@ def parse_args():
     return args
 
 
-def main(args_config, args_checkpoint, args_out, eval_json, args):
+def func1(args_config, args_checkpoint, args_out, eval_json, args):
 
     is_out_exist = osp.exists(out)
     is_eval_json_exist = osp.exists(eval_json)
@@ -275,8 +275,8 @@ def main(args_config, args_checkpoint, args_out, eval_json, args):
             mmcv.dump(metric_dict, eval_json)
             TestEvalStore.put_file(key=eval_json, file_path=eval_json)
 
-if __name__ == '__main__':
 
+def main():
 
     args = parse_args()
 
@@ -314,7 +314,7 @@ if __name__ == '__main__':
             eval_json = eval_json.replace('work_dirs', 'work_dirs_no_pth')
             # main(config_file, pth_file, out, eval_json)
 
-            main(config_file, pth_file, out, eval_json, args)
+            func1(config_file, pth_file, out, eval_json, args)
 
             # try:
             #     main(config_file, pth_file, out, eval_json)
@@ -322,3 +322,16 @@ if __name__ == '__main__':
             #     print(e)
             # finally:
             #     print('================================')
+
+
+if __name__ == '__main__':
+
+    from common.notify.notify_robot import NotifyRobot
+    # NotifyRobot('开始训练', '开始训练', '开始训练')
+
+    try:
+        main()
+        NotifyRobot('测试成功', '测试成功', '测试成功')
+    except Exception as e:
+        NotifyRobot('测试失败', '测试失败', '测试失败')
+        NotifyRobot('测试失败', '测试失败', e)

@@ -37,7 +37,7 @@ def addEval(name):
         precisions = np.array(precisions)
         num_gts = eval_detail_result['detail'][0]['num_gts']
         num_dets = eval_detail_result['detail'][0]['num_dets']
-        f1_scores = (2*recalls*precisions)/(recalls+precisions)
+        f1_scores = (2*recalls*precisions)/(recalls+precisions+0.00001)
         f1_scores[np.isnan(f1_scores)] = 0
 
         if num_dets==0:

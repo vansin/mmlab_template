@@ -123,7 +123,7 @@ def EvalData(config, epoch, dataset,
         EvalInfo.num_dets = num_dets
         EvalInfo.recall = recall
         EvalInfo.precision = precision
-        EvalInfo.f1_score = f1_score
+        # EvalInfo.f1_score = f1_score
         EvalInfo.recall_in_max_f1_score = recall_in_max_f1_score
         EvalInfo.precision_in_max_f1_score = precision_in_max_f1_score
         EvalInfo.max_f1_score = max_f1_score
@@ -146,7 +146,7 @@ def EvalData(config, epoch, dataset,
         new.num_dets = num_dets
         new.recall = recall
         new.precision = precision
-        new.f1_score = f1_score
+        # new.f1_score = f1_score
         new.recall_in_max_f1_score = recall_in_max_f1_score
         new.precision_in_max_f1_score = precision_in_max_f1_score
         new.max_f1_score = max_f1_score

@@ -238,7 +238,8 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
                 broadcast_buffers=False)
             outputs = multi_gpu_test(model, data_loader, args.tmpdir, args.gpu_collect)
     else:
-        outputs = mmcv.load(args_out)
+        if not eval_json_exist:
+            outputs = mmcv.load(args_out)
 
     # if args_out and not is_out_exist:
     if args_out and not pkl_exist:
@@ -272,8 +273,6 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
             metric_dict = dict(config=args_config, metric=metric, checkpoint_size=osp.getsize(
                 checkpoint_path) / 1024 / 1024)
 
-            # if args.work_dir is not None and rank == 0:
-            #     mmcv.dump(metric_dict, eval_json)
             mmcv.dump(metric_dict, eval_json)
             TestEvalStore.put_file(key=eval_json, file_path=eval_json)
 
@@ -322,7 +321,7 @@ def main():
 if __name__ == '__main__':
     
     
-    main()
+    # main()
 
     from common.notify.notify_robot import NotifyRobot
     # NotifyRobot('开始训练', '开始训练', '开始训练')

@@ -9,7 +9,7 @@ import time
 import numpy as np
 
 
-prefix = '/tmp/nas/visual/'
+prefix = '/project/nutstore/ubuntu/visual/'
 
 
 tmp_pkl_name = prefix+'tmp.pkl'

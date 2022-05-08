@@ -332,7 +332,7 @@ if __name__ == '__main__':
 df = pd.DataFrame.from_dict(algorithm_list_stats)
 
 
-prefix = '/tmp/nas/visual/'
+prefix = '/project/nutstore/ubuntu/visual/'
 
 
 df.to_csv(prefix+'trained_origin.csv')

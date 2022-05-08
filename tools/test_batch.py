@@ -21,6 +21,8 @@ from mmdet.models import build_detector
 import custom
 
 
+from common.aliyun_oss.test_eval_store import TestEvalStore
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet test (and eval) a model')
@@ -241,6 +243,9 @@ def main(args_config, args_checkpoint, args_out, eval_json, args):
     if args_out and not is_out_exist:
         print(f'\nwriting results to {args_out}')
         mmcv.dump(outputs, args_out)
+        # 同步到阿里云oss
+        TestEvalStore.put_file(key=args_out, file_path=args_out)
+
     if args.eval_json == False:
         return
 
@@ -264,10 +269,11 @@ def main(args_config, args_checkpoint, args_out, eval_json, args):
             print(checkpoint_path)
             metric_dict = dict(config=args_config, metric=metric, checkpoint_size=osp.getsize(
                 checkpoint_path) / 1024 / 1024)
+
             # if args.work_dir is not None and rank == 0:
             #     mmcv.dump(metric_dict, eval_json)
             mmcv.dump(metric_dict, eval_json)
-
+            TestEvalStore.put_file(key=eval_json, file_path=eval_json)
 
 if __name__ == '__main__':
 

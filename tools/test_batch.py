@@ -334,4 +334,4 @@ if __name__ == '__main__':
         NotifyRobot('测试成功', '测试成功', '测试成功')
     except Exception as e:
         NotifyRobot('测试失败', '测试失败', '测试失败')
-        NotifyRobot('测试失败', '测试失败', e)
+        NotifyRobot('测试失败', '测试失败', str(e))

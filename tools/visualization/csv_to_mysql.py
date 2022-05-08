@@ -6,12 +6,8 @@ from common.models.eval_info import EvalInfo
 
 import pandas as pd
 
-
-import getpass
-user_name = getpass.getuser()
-
-train_df = '/project/nutstore/ubuntu/paper/data/trained_origin.csv'
-eval_df = '/nutstore/ubuntu/paper/data/csv/latest.csv'
+train_df =pd.read_csv('/tmp/nas/visual/trained_origin.csv')
+eval_df = pd.read_csv('/tmp/nas/visual/latest.csv')
 
 train_data_list = train_df.to_dict('records')
 
@@ -34,7 +30,7 @@ for i, train_data in enumerate(train_data_list):
         q_TrainInfo.cmd = train_data['cmd']
         q_TrainInfo.eval_epoch = train_data['eval_epoch']
         q_TrainInfo.epoch = train_data['epoch']
-        # db.session.commit()
+        db.session.commit()
 
     else:
 
@@ -45,10 +41,8 @@ for i, train_data in enumerate(train_data_list):
         new.dataset = train_data['dataset']
         new.eval_epoch = train_data['eval_epoch']
         new.epoch = train_data['epoch']
-
         db.session.add(new)
-    
-db.session.commit()
+        db.session.commit()
 
 
 train_data_list = eval_df.to_dict('records')
@@ -105,7 +99,7 @@ for i, train_data in enumerate(train_data_list):
         EvalInfo.precision_in_max_f1_score = train_data['precision_in_max_f1_score']
         EvalInfo.max_f1_score = train_data['max_f1_score']
 
-        # db.session.commit()
+        db.session.commit()
 
     else:
         
@@ -130,7 +124,7 @@ for i, train_data in enumerate(train_data_list):
 
         db.session.add(new)
     
-db.session.commit()
+        db.session.commit()
 
 # for row in train_df.itertuples():
 

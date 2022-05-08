@@ -22,6 +22,7 @@ import custom
 
 
 from common.aliyun_oss.test_eval_store import TestEvalStore
+from common.model_op.deepl import addEval
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -240,7 +241,9 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
             outputs = multi_gpu_test(model, data_loader, args.tmpdir, args.gpu_collect)
     else:
         if not eval_json_exist:
-            outputs = mmcv.load(args_out)
+            TestEvalStore.get(args_out, args_out)
+
+        outputs = mmcv.load(args_out)
 
     # if args_out and not is_out_exist:
     if args_out and not pkl_exist:
@@ -254,7 +257,8 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
 
     rank, _ = get_dist_info()
     # if rank == 0 and not is_eval_json_exist:
-    if rank == 0 and not eval_json_exist:
+    # if rank == 0 and not eval_json_exist:
+    if rank == 0 and True:
 
         kwargs = {} if args.eval_options is None else args.eval_options
         if args.format_only:
@@ -275,6 +279,7 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
                 checkpoint_path) / 1024 / 1024)
 
             mmcv.dump(metric_dict, eval_json)
+            addEval(eval_json)
             TestEvalStore.put_file(key=eval_json, file_path=eval_json)
 
 
@@ -328,7 +333,7 @@ def main():
 if __name__ == '__main__':
     
     
-    # main()
+    main()
 
     from common.notify.notify_robot import NotifyRobot
     # NotifyRobot('开始训练', '开始训练', '开始训练')

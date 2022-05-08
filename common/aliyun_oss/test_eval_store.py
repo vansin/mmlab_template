@@ -9,7 +9,7 @@ class TestEvalStore():
 
     @staticmethod
     def is_exist(key):
-        return bucket.object_exists(TestEvalStore.prefix+key, key)
+        return bucket.object_exists(TestEvalStore.prefix+key)
 
     @staticmethod
     def get(key, file_path):

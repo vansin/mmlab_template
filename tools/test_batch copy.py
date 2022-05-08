@@ -125,11 +125,12 @@ def parse_args():
 
 def func1(args_config, args_checkpoint, args_out, eval_json, args):
 
-    pkl_exist = TestEvalStore.is_exist(args_out)
-    eval_json_exist = TestEvalStore.is_exist(args_out)
-
     is_out_exist = osp.exists(args_out)
     is_eval_json_exist = osp.exists(eval_json)
+
+    # is_eval_json_exist = False
+    # if is_eval_json_exist:
+    #     return
 
     checkpoint_path = args_checkpoint
 
@@ -209,8 +210,7 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
         shuffle=False)
 
     # build the model and load checkpoint
-    # if not is_out_exist:
-    if not pkl_exist:
+    if not is_out_exist:
 
         cfg.model.train_cfg = None
         model = build_detector(cfg.model, test_cfg=cfg.get('test_cfg'))
@@ -240,8 +240,7 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
     else:
         outputs = mmcv.load(args_out)
 
-    # if args_out and not is_out_exist:
-    if args_out and not pkl_exist:
+    if args_out and not is_out_exist:
         print(f'\nwriting results to {args_out}')
         mmcv.dump(outputs, args_out)
         # 同步到阿里云oss
@@ -251,8 +250,7 @@ def func1(args_config, args_checkpoint, args_out, eval_json, args):
         return
 
     rank, _ = get_dist_info()
-    # if rank == 0 and not is_eval_json_exist:
-    if rank == 0 and not eval_json_exist:
+    if rank == 0 and not is_eval_json_exist:
 
         kwargs = {} if args.eval_options is None else args.eval_options
         if args.format_only:
@@ -322,7 +320,7 @@ def main():
 if __name__ == '__main__':
     
     
-    main()
+    # main()
 
     from common.notify.notify_robot import NotifyRobot
     # NotifyRobot('开始训练', '开始训练', '开始训练')

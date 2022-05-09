@@ -6,8 +6,8 @@ from common.models.eval_info import EvalInfo
 
 import pandas as pd
 
-train_df =pd.read_csv('/tmp/nas/visual/trained_origin.csv')
-eval_df = pd.read_csv('/tmp/nas/visual/latest.csv')
+train_df =pd.read_csv('/project/nutstore/ubuntu/visual/trained_origin.csv')
+eval_df = pd.read_csv('/project/nutstore/ubuntu/visual/latest.csv')
 
 train_data_list = train_df.to_dict('records')
 
@@ -70,14 +70,15 @@ for i, train_data in enumerate(train_data_list):
     precision_in_max_f1_score = train_data['precision_in_max_f1_score']
     max_f1_score = train_data['max_f1_score']
 
-
+    esp = 0.00001
 
     q_TrainInfo = EvalInfo.query.filter(
         EvalInfo.epoch == epoch,
         EvalInfo.dataset == dataset,
         EvalInfo.algorithm == algorithm,
         EvalInfo.config == config,
-        EvalInfo.iou == iou
+        EvalInfo.iou > iou-esp,
+        EvalInfo.iou < iou+esp,
         ).first()
 
     if q_TrainInfo:

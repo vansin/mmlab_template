@@ -101,12 +101,15 @@ def EvalData(config, epoch, dataset,
     f1_score,recall_in_max_f1_score,
     precision_in_max_f1_score, max_f1_score, checkpoint_size):
 
+    esp = 0.00001
+
     q_TrainInfo = EvalInfo.query.filter(
         EvalInfo.epoch == epoch,
         EvalInfo.dataset == dataset,
         EvalInfo.algorithm == algorithm,
         EvalInfo.config == config,
-        EvalInfo.iou == iou
+        EvalInfo.iou > iou-esp,
+        EvalInfo.iou < iou+esp,
         ).first()
 
     if q_TrainInfo:

@@ -2,6 +2,7 @@
 
 
 from .tabledet_head import TableDetHead
+from .tabledet_iou_head import TableIouDetHead
 
 # from .vfnet_head import VFNetHead
 # from .yolact_head import YOLACTHead, YOLACTProtonet, YOLACTSegmHead
@@ -10,7 +11,8 @@ from .tabledet_head import TableDetHead
 # from .yolox_head import YOLOXHead
 
 __all__ = [
-    'TableDetHead'
+    'TableDetHead',
+    'TableIouDetHead'
 ]
 # __all__ = [
 #     'AnchorFreeHead', 'AnchorHead', 'GuidedAnchorHead', 'FeatureAdaption',

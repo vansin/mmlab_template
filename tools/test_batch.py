@@ -127,7 +127,7 @@ def parse_args():
 def func1(args_config, args_checkpoint, args_out, eval_json, args):
 
     pkl_exist = TestEvalStore.is_exist(args_out)
-    eval_json_exist = TestEvalStore.is_exist(args_out)
+    eval_json_exist = TestEvalStore.is_exist(eval_json)
 
     is_out_exist = osp.exists(args_out)
     is_eval_json_exist = osp.exists(eval_json)
@@ -332,7 +332,7 @@ def main():
 if __name__ == '__main__':
     
     
-    # main()
+    main()
 
     from common.notify.notify_robot import NotifyRobot
     # NotifyRobot('开始训练', '开始训练', '开始训练')

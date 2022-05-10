@@ -326,6 +326,9 @@ def main():
             eval_json = eval_json.replace('work_dirs', 'work_dirs_no_pth')
             # main(config_file, pth_file, out, eval_json)
 
+            if 'latest.pth' in pth_file:
+                continue
+
             func1(config_file, pth_file, out, eval_json, args)
 
 

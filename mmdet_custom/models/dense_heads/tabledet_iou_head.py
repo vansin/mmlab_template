@@ -76,17 +76,13 @@ class TableIouDetHead(BaseDenseHead, BBoxTestMixin):
                      type='CrossEntropyLoss',
                      use_sigmoid=True,
                      loss_weight=1.0),
-                 loss_xy=dict(
-                     type='CrossEntropyLoss',
-                     use_sigmoid=True,
-                     loss_weight=1.0),
-                 loss_wh=dict(type='MSELoss', loss_weight=1.0),
+                 loss_bbox=None,
                  train_cfg=None,
                  test_cfg=None,
                  init_cfg=dict(
                      type='Normal', std=0.01,
                      override=dict(name='convs_pred'))):
-        super(TableDetHead, self).__init__(init_cfg)
+        super(TableIouDetHead, self).__init__(init_cfg)
         # Check params
         assert (len(in_channels) == len(out_channels) == len(featmap_strides))
 
@@ -393,6 +389,7 @@ class TableIouDetHead(BaseDenseHead, BBoxTestMixin):
             pred_conf, target_conf, weight=pos_and_neg_mask)
         loss_xy = self.loss_xy(pred_xy, target_xy, weight=pos_mask)
         loss_wh = self.loss_wh(pred_wh, target_wh, weight=pos_mask)
+        # loss_bbox = self.loss_bbox()
 
         return loss_cls, loss_conf, loss_bbox
 

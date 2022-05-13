@@ -266,6 +266,5 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = './work_dirs/icdar2019_tracka_modern/tabledet/tabdet_mask_rcnn_r50_fpn_1x_coco'
 auto_resume = True
 gpu_ids = range(0, 1)

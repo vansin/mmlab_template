@@ -200,12 +200,14 @@ def main():
 
 if __name__ == '__main__':
 
-    from common.notify.notify_robot import NotifyRobot
-    # NotifyRobot('开始训练', '开始训练', '开始训练')
+    main()
 
-    try:
-        main()
-        NotifyRobot('训练成功', '训练成功', '训练成功')
-    except Exception as e:
-        NotifyRobot('训练失败', '训练失败', '训练失败')
-        NotifyRobot('训练失败', '训练失败', e)
+    # from common.notify.notify_robot import NotifyRobot
+    # # NotifyRobot('开始训练', '开始训练', '开始训练')
+
+    # try:
+    #     main()
+    #     NotifyRobot('训练成功', '训练成功', '训练成功')
+    # except Exception as e:
+    #     NotifyRobot('训练失败', '训练失败', '训练失败')
+    #     NotifyRobot('训练失败', '训练失败', e)

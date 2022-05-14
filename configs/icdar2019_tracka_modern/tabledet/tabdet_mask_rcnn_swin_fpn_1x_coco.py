@@ -4,12 +4,12 @@
 #     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 # ]
 
+pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa
 
 
 model = dict(
     type='MaskRCNN',
  backbone=dict(
-        _delete_=True,
         type='SwinTransformer',
         embed_dims=96,
         depths=[2, 2, 6, 2],

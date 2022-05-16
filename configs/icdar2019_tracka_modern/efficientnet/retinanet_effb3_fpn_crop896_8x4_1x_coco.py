@@ -90,4 +90,4 @@ runner = dict(type='EpochBasedRunner', max_epochs=12)
 
 # NOTE: This variable is for automatically scaling LR,
 # USER SHOULD NOT CHANGE THIS VALUE.
-default_batch_size = 32  # (8 GPUs) x (4 samples per GPU)
+default_batch_size = 4  # (8 GPUs) x (4 samples per GPU)

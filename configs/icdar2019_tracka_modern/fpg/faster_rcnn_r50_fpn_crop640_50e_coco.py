@@ -65,4 +65,4 @@ lr_config = dict(
     step=[30, 40])
 # runtime settings
 runner = dict(max_epochs=50)
-evaluation = dict(interval=2)
+evaluation = dict(interval=2000)

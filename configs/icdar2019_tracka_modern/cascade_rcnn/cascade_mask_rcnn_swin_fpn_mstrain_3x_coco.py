@@ -141,7 +141,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=0.001,
     step=[9, 11])
-runner = dict(type='EpochBasedRunner', max_epochs=12)
+runner = dict(type='EpochBasedRunner', max_epochs=24)
 model = dict(
     type='CascadeRCNN',
     backbone=dict(

@@ -131,3 +131,5 @@ results
 *.onnx
 
 work_dirs_no_pth
+
+wandb

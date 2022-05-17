@@ -52,7 +52,7 @@ data = dict(
         times=5,
         dataset=dict(
             type=dataset_type,
-            ann_file=data_root + 'modern_train.json',
+            ann_file='data/icdar2019/modern_train.json',
             img_prefix='data/icdar2019/training/TRACKA/ground_truth',
             pipeline=train_pipeline)),
     val=dict(pipeline=test_pipeline),

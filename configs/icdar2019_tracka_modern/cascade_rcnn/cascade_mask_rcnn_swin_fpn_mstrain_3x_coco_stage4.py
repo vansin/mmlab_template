@@ -8,7 +8,9 @@ checkpoint_config = dict(interval=1)
 log_config = dict(
     interval=50,
     hooks=[dict(type='TextLoggerHook'),
-           dict(type='TensorboardLoggerHook')])
+           dict(type='TensorboardLoggerHook'),
+           dict(type='WandbLoggerHook') 
+           ])
 custom_hooks = [dict(type='NumClassCheckHook')]
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
@@ -341,6 +343,23 @@ model = dict(
                     pos_iou_thr=0.7,
                     neg_iou_thr=0.7,
                     min_pos_iou=0.7,
+                    match_low_quality=False,
+                    ignore_iof_thr=-1),
+                sampler=dict(
+                    type='RandomSampler',
+                    num=512,
+                    pos_fraction=0.25,
+                    neg_pos_ub=-1,
+                    add_gt_as_proposals=True),
+                mask_size=28,
+                pos_weight=-1,
+                debug=False),
+            dict(
+                assigner=dict(
+                    type='MaxIoUAssigner',
+                    pos_iou_thr=0.8,
+                    neg_iou_thr=0.8,
+                    min_pos_iou=0.8,
                     match_low_quality=False,
                     ignore_iof_thr=-1),
                 sampler=dict(

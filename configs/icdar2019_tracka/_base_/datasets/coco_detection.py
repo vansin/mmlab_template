@@ -46,4 +46,4 @@ data = dict(
         ann_file=data_root + 'test.json',
         img_prefix=data_root + 'test_img/',
         pipeline=test_pipeline))
-evaluation = dict(interval=1, metric='mAP')
+evaluation = dict(interval=1000, metric='mAP')

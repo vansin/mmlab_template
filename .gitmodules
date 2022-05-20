@@ -7,30 +7,3 @@
 [submodule "mmdeploy"]
 	path = mmdeploy
 	url = https://github.com/open-mmlab/mmdeploy.git
-[submodule "mmlab/mmsegmentation"]
-	path = mmlab/mmsegmentation
-	url = https://github.com/open-mmlab/mmsegmentation.git
-[submodule "mmlab/mmrazor"]
-	path = mmlab/mmrazor
-	url = https://github.com/open-mmlab/mmrazor.git
-[submodule "mmlab/mmocr"]
-	path = mmlab/mmocr
-	url = https://github.com/open-mmlab/mmocr.git
-[submodule "mmlab/mmrotate"]
-	path = mmlab/mmrotate
-	url = https://github.com/open-mmlab/mmrotate.git
-[submodule "mmlab/mmpose"]
-	path = mmlab/mmpose
-	url = https://github.com/open-mmlab/mmpose.git
-[submodule "mmlab/mmediting"]
-	path = mmlab/mmediting
-	url = https://github.com/open-mmlab/mmediting.git
-[submodule "mmlab/mmtracking"]
-	path = mmlab/mmtracking
-	url = https://github.com/open-mmlab/mmtracking.git
-[submodule "mmlab/mmhuman3d"]
-	path = mmlab/mmhuman3d
-	url = https://github.com/open-mmlab/mmhuman3d.git
-[submodule "mmlab/mmdetection3d"]
-	path = mmlab/mmdetection3d
-	url = https://github.com/open-mmlab/mmdetection3d.git

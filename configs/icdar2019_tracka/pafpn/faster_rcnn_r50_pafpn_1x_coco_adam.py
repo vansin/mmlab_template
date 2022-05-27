@@ -1,5 +1,5 @@
 _base_ = [
-    '../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
+    '../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py',
     '../_base_/schedules/schedule_adam1x.py'
 ]
 

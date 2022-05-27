@@ -7,6 +7,7 @@ _base_ = [
 norm_cfg = dict(type='BN', requires_grad=True)
 model = dict(
     neck=dict(
+        _delete_=True,
         type='FPG',
         in_channels=[256, 512, 1024, 2048],
         out_channels=256,

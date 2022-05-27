@@ -85,8 +85,8 @@ model = dict(
         top_k=200,
         max_per_img=100))
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'TableDataset'
+data_root = 'data/icdar2019_tracka_modern/'
 img_norm_cfg = dict(
     mean=[123.68, 116.78, 103.94], std=[58.40, 57.12, 57.38], to_rgb=True)
 train_pipeline = [

@@ -22,8 +22,8 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = 'data/coco/'
-dataset_type = 'CocoDataset'
+data_root = 'data/icdar2019_tracka_modern/'
+dataset_type = 'TableDataset'
 
 train_pipeline = [
     dict(type='Mosaic', img_scale=img_scale, pad_val=114.0),

@@ -85,8 +85,8 @@ test_pipeline = [
         ])
 ]
 
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+dataset_type = 'TableDataset'
+data_root = 'data/icdar2019_tracka_modern/'
 
 # Use RepeatDataset to speed up training
 data = dict(

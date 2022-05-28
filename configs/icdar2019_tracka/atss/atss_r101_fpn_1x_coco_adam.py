@@ -1,4 +1,4 @@
-_base_ = './atss_r50_fpn_1x_coco.py'
+_base_ = './atss_r50_fpn_1x_coco_adam.py'
 model = dict(
     backbone=dict(
         depth=101,

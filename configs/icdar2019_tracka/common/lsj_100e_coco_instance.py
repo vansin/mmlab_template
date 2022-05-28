@@ -62,20 +62,20 @@ data = dict(
         times=4,  # simply change this from 2 to 16 for 50e - 400e training.
         dataset=dict(
             type=dataset_type,
-            ann_file=data_root + 'annotations/instances_train2017.json',
-            img_prefix=data_root + 'train2017/',
+            ann_file=data_root + 'train.json',
+            img_prefix=data_root + 'train_img/',
             pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'test.json',
+        img_prefix=data_root + 'test_img/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'test.json',
+        img_prefix=data_root + 'test_img/',
         pipeline=test_pipeline))
-evaluation = dict(interval=5, metric=['bbox', 'segm'])
+evaluation = dict(interval=2000, metric='mAP')
 
 # optimizer assumes bs=64
 optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.00004)

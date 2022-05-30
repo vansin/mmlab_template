@@ -154,7 +154,8 @@ evaluation = dict(
     # less than ‘max_epochs - num_last_epochs’.
     # The evaluation interval is 1 when running epoch is greater than
     # or equal to ‘max_epochs - num_last_epochs’.
-    interval=interval,
+    # interval=interval,
+    interval=2000,
     dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
     metric='bbox')
 log_config = dict(interval=50)

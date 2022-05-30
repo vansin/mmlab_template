@@ -156,6 +156,6 @@ evaluation = dict(
     # or equal to ‘max_epochs - num_last_epochs’.
     # interval=interval,
     interval=2000,
-    dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
+    # dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
     metric='bbox')
 log_config = dict(interval=50)

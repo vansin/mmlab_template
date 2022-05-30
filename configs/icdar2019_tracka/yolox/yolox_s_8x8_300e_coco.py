@@ -92,13 +92,13 @@ data = dict(
     train=train_dataset,
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'test.json',
+        img_prefix=data_root + 'test_img/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_val2017.json',
-        img_prefix=data_root + 'val2017/',
+        ann_file=data_root + 'test.json',
+        img_prefix=data_root + 'test_img/',
         pipeline=test_pipeline))
 
 # optimizer
